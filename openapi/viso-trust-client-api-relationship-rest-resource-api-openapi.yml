@@ -1,0 +1,965 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-relationship-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-relationship-rest-resource
+paths:
+  /api/v1/third-party-contact:
+    put:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Update third party contact details for a relationship
+      operationId: updateThirdPartyContact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThirdPartyContactUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/relationships:
+    get:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Get a list of all relationships and their assessment details
+      operationId: getAllRelationshipsForCurrentUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Relationship'
+    put:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Update a relationship
+      operationId: updateRelationshipAsCurrentUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipUpdateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+    post:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Create a Relationship
+      operationId: createRelationshipAsCurrentUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+    patch:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Partially update a relationship
+      operationId: partiallyUpdateRelationshipAsCurrentUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipUpdateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/relationships/{id}/onboard:
+    put:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Onboard a relationship
+      operationId: onboardRelationship
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipOnboardRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/relationships/{id}/offboard:
+    put:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Mark a relationship as not onboarded
+      operationId: offboardRelationship
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/relationships/{id}/archive:
+    put:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Archive a relationship
+      operationId: archiveRelationship
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/tags:
+    post:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Create tags
+      operationId: createTagsAsCurrentUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagsCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                uniqueItems: true
+  /api/v1/relationships/search:
+    get:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Search for relationships by domain/name (deprecated)
+      operationId: getSearchRelationshipsAsCurrentUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipSearchInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Relationship'
+                uniqueItems: true
+      deprecated: true
+    post:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Search for relationships by domain/name
+      operationId: searchRelationshipsAsCurrentUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipSearchInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Relationship'
+                uniqueItems: true
+  /api/v1/relationships/domain:
+    post:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Create a Relationship by domain
+      operationId: createRelationshipAsCurrentUserByDomain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRelationshipByDomainRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/relationships/{id}:
+    get:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Get a relationship and its assessment details
+      operationId: getRelationshipForCurrentUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relationship'
+  /api/v1/relationships/{id}/artifacts:
+    get:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Download active artifacts for a relationship as a zip
+      operationId: downloadRelationshipArtifacts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/zip:
+              schema:
+                $ref: '#/components/schemas/StreamingResponseBody'
+  /api/v1/relationship/{id}/assessments:
+    get:
+      tags:
+      - client-api-relationship-rest-resource
+      summary: Get assessment history for a relationship
+      operationId: getAssessmentsForRelationship
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assessment'
+                uniqueItems: true
+components:
+  schemas:
+    TagsCreateInput:
+      type: object
+      default: null
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+          minItems: 1
+      required:
+      - tags
+    RecertificationSettings:
+      type: 'null'
+      properties:
+        recertificationType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+        recertificationDate:
+          type: string
+          format: date-time
+        reviewFrequency:
+          type: string
+          enum:
+          - THREE_YEARS
+          - TWO_YEARS
+          - ANNUAL
+          - SEMIANNUAL
+          - QUARTERLY
+      required:
+      - recertificationDate
+      - recertificationType
+      - reviewFrequency
+    PrimaryContact:
+      type: object
+      default: null
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    DataType:
+      type: object
+      default: null
+      properties:
+        name:
+          type: string
+    LifecycleManagementUpdateRequest:
+      type: 'null'
+      properties:
+        artifactUpdateSettings:
+          $ref: '#/components/schemas/ArtifactUpdateSettings'
+        recertificationSettings:
+          $ref: '#/components/schemas/RecertificationSettings'
+    RelationshipSearchInput:
+      type: object
+      default: null
+      properties:
+        domains:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        name:
+          type: string
+      required:
+      - domains
+      - name
+    Relationship:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        homepage:
+          type: string
+        description:
+          type: string
+        businessUnit:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        updatedDate:
+          type: string
+          format: date-time
+        recertificationDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - ARCHIVED
+          - NOT_ONBOARDED
+          - ONBOARDED
+          - PURGED
+        inherentRisk:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+        inherentRiskScore:
+          type: number
+          format: float
+        residualRisk:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+        residualRiskScore:
+          type: number
+          format: float
+        isTransitional:
+          type: boolean
+        contextTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlimContextTypeView'
+          uniqueItems: true
+        dataTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlimDataTypeView'
+          uniqueItems: true
+        businessOwner:
+          $ref: '#/components/schemas/VisoUser'
+        assessmentLead:
+          $ref: '#/components/schemas/VisoUser'
+        recertificationType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+        subscribers:
+          type: array
+          items:
+            $ref: '#/components/schemas/VisoUser'
+          uniqueItems: true
+        primaryContact:
+          $ref: '#/components/schemas/PrimaryContact'
+        tags:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        tier:
+          type: string
+        complianceStandards:
+          type: array
+          items:
+            type: string
+            enum:
+            - C5
+            - CCPA
+            - CSA_STAR
+            - CSA_LEVEL2
+            - FEDRAMP
+            - GDPR
+            - GLBA
+            - HIPAA
+            - HITRUST
+            - ISO27001
+            - ISO27017
+            - ISO27018
+            - ISO27701
+            - ISO21434
+            - ISO22301
+            - ISO42001
+            - ISOIEC_2700127002
+            - ISOIEC_2701727002
+            - ISOIEC_2701827002
+            - PCIDSS
+            - PRIVACY_SHIELD
+            - SOC1
+            - SOC2
+            - SOC3
+            - TISAXREPORTLEVEL3
+          uniqueItems: true
+        latestAssessment:
+          $ref: '#/components/schemas/Assessment'
+        riskAcceptanceStatus:
+          type: string
+          enum:
+          - RISK_ACCEPTED
+          - REVIEW_NEEDED
+          - REMEDIATION_REQUESTED
+        externalId:
+          type: string
+        productId:
+          type: string
+          format: uuid
+        productName:
+          type: string
+        dimensionCoverage:
+          type: array
+          items:
+            $ref: '#/components/schemas/RiskDimensionCoverageDTO'
+      required:
+      - name
+    AssessmentStatusHistory:
+      type: object
+      default: null
+      properties:
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
+    RelationshipUpdateInput:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        homepage:
+          type: string
+          pattern: (https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|(?!(.*www\.){1})[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})|
+        description:
+          type: string
+        contextTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContextType'
+        dataTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataType'
+        businessOwnerFirstName:
+          type: string
+        businessOwnerLastName:
+          type: string
+        businessOwnerEmail:
+          type: string
+        assessmentLeadFirstName:
+          type: string
+        assessmentLeadLastName:
+          type: string
+        assessmentLeadEmail:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        externalId:
+          type: string
+        productName:
+          type: string
+          maxLength: 255
+          minLength: 0
+        tier:
+          type: integer
+          format: int32
+          maximum: 5
+          minimum: 1
+    RelationshipOnboardRequest:
+      type: object
+      properties:
+        approvalSummary:
+          type:
+          - string
+          - 'null'
+        lifecycleManagementUpdateRequest:
+          $ref: '#/components/schemas/LifecycleManagementUpdateRequest'
+    StreamingResponseBody: {}
+    AssessmentRecommendation:
+      type: object
+      default: null
+      properties:
+        description:
+          type: string
+        recommendationType:
+          type: string
+          enum:
+          - EXPIRED
+          - HIGH_ASSURANCE
+          - CONTROL_DOMAINS
+          - COMBINED
+          - CERT_ONLY
+          - LOW_COVERAGE
+          - PRESUMED_ARTIFACT
+        createdDate:
+          type: string
+          format: date-time
+    VisoUser:
+      type: object
+      default: null
+      properties:
+        businessUnit:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    ThirdPartyContactUpdateRequest:
+      type: object
+      default: null
+      properties:
+        relationshipId:
+          type: integer
+          format: int64
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - email
+      - firstName
+      - lastName
+      - relationshipId
+    SlimDataTypeView:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    Assessment:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        requestedAuditTypes:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        aiProcessingOnly:
+          type: boolean
+        collectionTimeline:
+          type: string
+          enum:
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          - THIRTY_DAYS
+          - SIXTY_DAYS
+          - NINETY_DAYS
+          - ONE_HUNDRED_TWENTY_DAYS
+        followupTimeline:
+          type: string
+          enum:
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          - THIRTY_DAYS
+          - SIXTY_DAYS
+          - NINETY_DAYS
+        followupType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - CONCIERGE
+        sentToFirstName:
+          type: string
+        sentToLastName:
+          type: string
+        createdReason:
+          type: string
+          enum:
+          - INITIAL_ASSESSMENT
+          - ARTIFACTS_EXPIRED
+          - RECERTIFICATION_INITIATED
+          - BUSINESS_CASE_OR_DATA_TYPES_CHANGED
+          - THIRD_PARTY_CONTACT_UPDATED
+          - ARTIFACTS_UPLOADED_ON_RELATIONSHIP
+          - REMEDIATION
+          - RISK_ADVISORY_RESPONSE
+          - INSTANT_ANALYSIS
+          - PUBLIC_SEARCH
+        assessmentType:
+          type: string
+        statusHistories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentStatusHistory'
+          uniqueItems: true
+        expirationDate:
+          type: string
+          format: date-time
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentRecommendation'
+          uniqueItems: true
+        completedDate:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          default: ''
+          deprecated: true
+        phaseDate:
+          type: string
+          format: date-time
+        updatedDate:
+          type: string
+          format: date-time
+        createdDate:
+          type: string
+          format: date-time
+        sentToEmail:
+          type: string
+        sentBy:
+          $ref: '#/components/schemas/VisoUser'
+        status:
+          type: string
+          enum:
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
+        requestedArtifactCollection:
+          type: boolean
+        noVendorResponseAction:
+          type: string
+          enum:
+          - CLOSE_COLLECTION_REQUEST
+          - NOTIFY_ME
+        followupRiskThreshold:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+    ContextType:
+      type: object
+      default: null
+      properties:
+        name:
+          type: string
+    CreateRelationshipByDomainRequest:
+      type: object
+      properties:
+        domain:
+          type: string
+          minLength: 1
+        vendorName:
+          type: string
+          minLength: 1
+        product:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        instantAnalysis:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - domain
+      - vendorName
+    RiskDimensionCoverageDTO:
+      type: object
+      properties:
+        dimension:
+          type: string
+        inScope:
+          type: boolean
+        coverage:
+          type: string
+        coveragePercentage:
+          type: string
+    SlimContextTypeView:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    ExternalAssessment:
+      type: object
+      default: null
+      properties:
+        reviewFrequency:
+          type: string
+          enum:
+          - THREE_YEARS
+          - TWO_YEARS
+          - ANNUAL
+          - SEMIANNUAL
+          - QUARTERLY
+        recertificationType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+        assessmentCompletionDate:
+          type: string
+          format: date
+        assessmentStartDate:
+          type: string
+          format: date
+        automaticArtifactUpdates:
+          type: boolean
+        inherentRiskLevel:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+        residualRiskLevel:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+      required:
+      - assessmentCompletionDate
+      - assessmentStartDate
+      - automaticArtifactUpdates
+      - inherentRiskLevel
+      - recertificationType
+      - residualRiskLevel
+      - reviewFrequency
+    ArtifactUpdateSettings:
+      type: 'null'
+      properties:
+        artifactUpdateType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+      required:
+      - artifactUpdateType
+    ThirdPartyContact:
+      type: object
+      default: null
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - email
+      - firstName
+      - lastName
+    RelationshipCreateInput:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        homepage:
+          type: string
+          pattern: (https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|(?!(.*www\.){1})[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})|
+        description:
+          type: string
+        contextTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContextType'
+        dataTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataType'
+        businessOwnerFirstName:
+          type: string
+        businessOwnerLastName:
+          type: string
+        businessOwnerEmail:
+          type: string
+        assessmentLeadFirstName:
+          type: string
+        assessmentLeadLastName:
+          type: string
+        assessmentLeadEmail:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        externalId:
+          type: string
+        productName:
+          type: string
+          maxLength: 255
+          minLength: 0
+        tier:
+          type: integer
+          format: int32
+          maximum: 5
+          minimum: 1
+        thirdPartyContact:
+          $ref: '#/components/schemas/ThirdPartyContact'
+        externalAssessment:
+          $ref: '#/components/schemas/ExternalAssessment'
+        instantAnalysis:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

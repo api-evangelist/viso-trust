@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-questionnaire-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-questionnaire-rest-resource
+paths:
+  /api/v1/relationships/{id}/questionnaires:
+    get:
+      tags:
+      - client-api-questionnaire-rest-resource
+      summary: Get all questionnaires available for a relationship.
+      description: Returns every active organization-level questionnaire alongside its effective enabled state for the given relationship. A questionnaire is enabled for the relationship when it has been explicitly enabled via `PUT /relationships/{id}/questionnaires`, or when no relationship-level configuration exists and the questionnaire is enabled at the organization level.
+      operationId: getQuestionnairesForRelationship
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelationshipQuestionnaireView'
+    put:
+      tags:
+      - client-api-questionnaire-rest-resource
+      summary: Update which questionnaires are enabled for a relationship.
+      description: Replaces the relationship's enabled-questionnaire list with the provided ids. Any active organization questionnaire not included in `enabledQuestionnaireIds` is disabled for the relationship.
+      operationId: updateQuestionnairesForRelationship
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationshipQuestionnairesUpdateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelationshipQuestionnaireView'
+  /api/v1/questionnaires:
+    get:
+      tags:
+      - client-api-questionnaire-rest-resource
+      summary: Get all questionnaires available to your organization.
+      description: Returns the active questionnaires configured for your organization. Use `GET /relationships/{id}/questionnaires` to see which questionnaires are enabled for a particular relationship, and `PUT /relationships/{id}/questionnaires` to enable or disable them per relationship before passing their ids to the Start Assessment endpoint via the `questionnaires` field.
+      operationId: getAllQuestionnairesForCurrentClient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuestionnaireView'
+components:
+  schemas:
+    QuestionnaireView:
+      type: object
+      default: null
+      description: A questionnaire available to your organization
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        enabled:
+          type: boolean
+          default: false
+          description: If true, the questionnaire is enabled at the organization level and applied by default to relationships that have not configured their own questionnaire list.
+        aiOnly:
+          type: boolean
+          default: false
+          description: If true, the questionnaire is answered by AI by default and is not sent to the vendor for manual response when assessing. It can still be explicitly selected for manual response by passing its id in the `questionnaires` field on the Start Assessment endpoint.
+        createdDate:
+          type: string
+          format: date-time
+    RelationshipQuestionnairesUpdateInput:
+      type: object
+      default: null
+      description: Replaces the relationship's enabled-questionnaire list. Every active organization-level questionnaire not included in `enabledQuestionnaireIds` is marked disabled for the relationship, overriding the organization-level default.
+      properties:
+        enabledQuestionnaireIds:
+          type: array
+          default: ''
+          description: Ids of questionnaires to enable for this relationship. Each id must reference an active organization-level questionnaire returned by `GET /questionnaires` or `GET /relationships/{id}/questionnaires`; unknown ids return 404. Pass an empty set to disable all questionnaires for the relationship.
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+      required:
+      - enabledQuestionnaireIds
+    RelationshipQuestionnaireView:
+      type: object
+      default: null
+      description: A questionnaire available to your organization, with the effective enabled state for a specific relationship.
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        enabled:
+          type: boolean
+          default: false
+          description: True if this questionnaire will be answered when an assessment is started for this relationship. Reflects relationship-level overrides, falling back to the organization-level enabled flag when no override exists.
+        aiOnly:
+          type: boolean
+          default: false
+          description: If true, the questionnaire is answered by AI by default and is not sent to the vendor for manual response when assessing. It can still be explicitly selected for manual response by passing its id in the `questionnaires` field on the Start Assessment endpoint.
+        createdDate:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

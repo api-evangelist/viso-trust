@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-vendor-directory-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-vendor-directory-rest-resource
+paths:
+  /api/v1/directory/search:
+    get:
+      tags:
+      - client-api-vendor-directory-rest-resource
+      operationId: getVendorDirectoryByDomainOrUrl
+      parameters:
+      - name: urlOrDomain
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDirectoryView'
+components:
+  schemas:
+    VendorDirectoryView:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        homepage:
+          type: string
+        description:
+          type: string
+        faviconUrl:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-vendor-risk-summary-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-vendor-risk-summary-rest-resource
+paths:
+  /api/v1/vendors/{id}/risk-summary:
+    get:
+      tags:
+      - client-api-vendor-risk-summary-rest-resource
+      summary: Get vendor risk summary by vendor ID
+      operationId: getVendorRiskSummaryById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorRiskSummaryResponse'
+  /api/v1/vendors/risk-summary:
+    get:
+      tags:
+      - client-api-vendor-risk-summary-rest-resource
+      summary: Get vendor risk summary by vendor name or domain
+      operationId: getVendorRiskSummaryByNameOrDomain
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: domain
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorRiskSummaryResponse'
+components:
+  schemas:
+    VendorRiskSummaryResponse:
+      type: object
+      properties:
+        vendorId:
+          type: integer
+          format: int64
+        vendorName:
+          type: string
+        evaluatedAt:
+          type: string
+          format: date-time
+        overallRiskLevel:
+          type: string
+        overallRiskScore:
+          type: number
+          format: float
+        relationshipCount:
+          type: integer
+          format: int32
+        relationships:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationshipEntry'
+        aggregateControlDomainSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateControlDomainSummary'
+        summaryText:
+          type: string
+        emptySummaryReason:
+          type: string
+        summaryGeneratedAt:
+          type: string
+          format: date-time
+    RelationshipEntry:
+      type: object
+      properties:
+        relationshipId:
+          type: integer
+          format: int64
+        productServiceId:
+          type: string
+          format: uuid
+        productServiceName:
+          type: string
+        assessmentStatus:
+          type: string
+          enum:
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
+        riskLevel:
+          type: string
+        riskScore:
+          type: number
+          format: float
+        lastAssessedAt:
+          type: string
+          format: date-time
+        controlDomainSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlDomainSummary'
+    ControlDomainSummary:
+      type: object
+      properties:
+        domain:
+          type: string
+        riskLevel:
+          type: string
+    AggregateControlDomainSummary:
+      type: object
+      properties:
+        domain:
+          type: string
+        highestRiskLevel:
+          type: string
+        affectedRelationships:
+          type: array
+          items:
+            type: integer
+            format: int64
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

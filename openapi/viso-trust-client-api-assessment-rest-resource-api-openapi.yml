@@ -1,0 +1,395 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-assessment-rest-resource
+paths:
+  /api/v1/assessments/{id}/followup:
+    put:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Update the follow-up settings of an in-progress assessment
+      operationId: updateFollowup
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentFollowupInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /api/v1/assessments/{id}/expiration-date:
+    put:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Update the expiration date of an in-progress assessment
+      operationId: updateExpirationDate
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentExpirationInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+  /api/v1/assessments:
+    post:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Start an Assessment
+      operationId: createAssessment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                request:
+                  type: string
+                  description: "Information necessary to start the assessment.\n\nRecipient details are optional. When all of `recipientEmail`, `recipientFirstName`, and `recipientLastName`\nare omitted, the assessment is started in research mode (no vendor contact). Research-mode assessments\nmay also include any combination of uploaded `files` and/or `publicDocumentUrls`; if neither is provided,\nVISO will run public information search only.\n\nExample (vendor-contact assessment):\n{\n    \"relationshipId\": 1,\n    \"recipientEmail\": \"dan@example.com\",\n    \"recipientFirstName\": \"Dan\",\n    \"recipientLastName\": \"Example\",\n    \"publicDocumentUrls\": [\"google.com\"],\n    \"followupType\": \"MANUAL\",\n    \"followupRiskThreshold\": null,\n    \"followupTimeline\": null,\n    \"collectionTimeline\": null,\n    \"noVendorResponseAction\": null,\n    \"aiProcessingOnly\": false,\n    \"questionnaires\": [\"00000000-0000-0000-0000-000000000000\"]\n}\n\nExample (research-only assessment):\n{\n    \"relationshipId\": 1\n}"
+                files:
+                  type: array
+                  description: Any files to associate with the assessment
+                  items:
+                    type: string
+                    format: binary
+              required:
+              - request
+            encoding:
+              request:
+                contentType: multipart/form-data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assessment'
+  /api/v1/assessments/{id}:
+    get:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Get an assessment
+      operationId: getAssessment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assessment'
+  /api/v1/assessments/{id}/summary:
+    get:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Get the summary for an assessment
+      operationId: getAssessmentSummary
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentSummaryView'
+  /api/v1/assessments/{id}/summary/export:
+    get:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Export the LLM assessment summary as a PDF
+      operationId: exportSummaryPdf
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/StreamingResponseBody'
+  /api/v1/assessments/{id}/artifacts:
+    get:
+      tags:
+      - client-api-assessment-rest-resource
+      summary: Download artifacts for an assessment as a zip
+      operationId: downloadAssessmentArtifacts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/zip:
+              schema:
+                $ref: '#/components/schemas/StreamingResponseBody'
+components:
+  schemas:
+    Assessment:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        requestedAuditTypes:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        aiProcessingOnly:
+          type: boolean
+        collectionTimeline:
+          type: string
+          enum:
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          - THIRTY_DAYS
+          - SIXTY_DAYS
+          - NINETY_DAYS
+          - ONE_HUNDRED_TWENTY_DAYS
+        followupTimeline:
+          type: string
+          enum:
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          - THIRTY_DAYS
+          - SIXTY_DAYS
+          - NINETY_DAYS
+        followupType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - CONCIERGE
+        sentToFirstName:
+          type: string
+        sentToLastName:
+          type: string
+        createdReason:
+          type: string
+          enum:
+          - INITIAL_ASSESSMENT
+          - ARTIFACTS_EXPIRED
+          - RECERTIFICATION_INITIATED
+          - BUSINESS_CASE_OR_DATA_TYPES_CHANGED
+          - THIRD_PARTY_CONTACT_UPDATED
+          - ARTIFACTS_UPLOADED_ON_RELATIONSHIP
+          - REMEDIATION
+          - RISK_ADVISORY_RESPONSE
+          - INSTANT_ANALYSIS
+          - PUBLIC_SEARCH
+        assessmentType:
+          type: string
+        statusHistories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentStatusHistory'
+          uniqueItems: true
+        expirationDate:
+          type: string
+          format: date-time
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentRecommendation'
+          uniqueItems: true
+        completedDate:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          default: ''
+          deprecated: true
+        phaseDate:
+          type: string
+          format: date-time
+        updatedDate:
+          type: string
+          format: date-time
+        createdDate:
+          type: string
+          format: date-time
+        sentToEmail:
+          type: string
+        sentBy:
+          $ref: '#/components/schemas/VisoUser'
+        status:
+          type: string
+          enum:
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
+        requestedArtifactCollection:
+          type: boolean
+        noVendorResponseAction:
+          type: string
+          enum:
+          - CLOSE_COLLECTION_REQUEST
+          - NOTIFY_ME
+        followupRiskThreshold:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+    AssessmentSummaryView:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        summary:
+          type: string
+    UpdateAssessmentExpirationInput:
+      type: object
+      properties:
+        expirationDate:
+          type: string
+          format: date-time
+      required:
+      - expirationDate
+    AssessmentRecommendation:
+      type: object
+      default: null
+      properties:
+        description:
+          type: string
+        recommendationType:
+          type: string
+          enum:
+          - EXPIRED
+          - HIGH_ASSURANCE
+          - CONTROL_DOMAINS
+          - COMBINED
+          - CERT_ONLY
+          - LOW_COVERAGE
+          - PRESUMED_ARTIFACT
+        createdDate:
+          type: string
+          format: date-time
+    StreamingResponseBody: {}
+    UpdateAssessmentFollowupInput:
+      type: object
+      properties:
+        followupType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - CONCIERGE
+        followupRiskThreshold:
+          type:
+          - string
+          - 'null'
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+        followupTimeline:
+          type:
+          - string
+          - 'null'
+          enum:
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          - THIRTY_DAYS
+          - SIXTY_DAYS
+          - NINETY_DAYS
+      required:
+      - followupType
+    VisoUser:
+      type: object
+      default: null
+      properties:
+        businessUnit:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    AssessmentStatusHistory:
+      type: object
+      default: null
+      properties:
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

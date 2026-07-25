@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-audit-log-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-audit-log-rest-resource
+paths:
+  /api/v1/audit-log/user-events:
+    post:
+      tags:
+      - client-api-audit-log-rest-resource
+      summary: Get all user audit log events for your organization in the time frame, limited to 500 records
+      operationId: getAllAuditLogEventsRest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogFilterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserAuditEvent'
+  /api/v1/audit-log/events:
+    post:
+      tags:
+      - client-api-audit-log-rest-resource
+      summary: Get filtered audit log events based on specific types and categories for your organization, limited to 500 records
+      operationId: getFilteredAuditLogEventsRest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogFilterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditEvent'
+components:
+  schemas:
+    UserAuditEvent:
+      type: object
+      properties:
+        auditEventType:
+          type: string
+          enum:
+          - USER_LOGGED_OUT
+          - USER_CREATED
+          - USER_UPDATED
+          - USER_FIRST_LOG_IN
+          - EXISTING_USER_FIRST_LOG_IN
+          - NEW_USER_FIRST_LOG_IN
+          - USER_LOGGED_IN
+          - USER_DEFAULT_SUBSCRIBER_ADDED
+          - USER_DEFAULT_SUBSCRIBER_REMOVED
+          - USER_SUBSCRIBED
+          - USER_UNSUBSCRIBED
+          - USER_UPLOADED_ARTIFACT
+          - USER_DOWNLOADED_ARTIFACT
+          - USER_EXPORTED_ARTIFACT
+        dateTime:
+          type: string
+          format: date-time
+        email:
+          type: string
+        userId:
+          type: integer
+          format: int64
+    AuditEventType:
+      type: object
+      properties:
+        name:
+          type: string
+    AuditLogFilterRequest:
+      type: object
+      default: null
+      description: Request for filtering audit log events by specific types
+      properties:
+        start:
+          type: string
+          format: date-time
+          default: ''
+          description: Start date for the audit log query
+        end:
+          type: string
+          format: date-time
+          default: ''
+          description: End date for the audit log query
+        eventTypes:
+          type: array
+          contains:
+            default: ''
+          description: 'Set of specific event types to retrieve. If null or empty, returns all event types.
+
+            Allowed values (by category):
+
+            USER_: USER_LOGGED_IN, USER_LOGGED_OUT, EXISTING_USER_FIRST_LOG_IN, NEW_USER_FIRST_LOG_IN, USER_UPLOADED_ARTIFACT, USER_DOWNLOADED_ARTIFACT, USER_EXPORTED_ARTIFACT, USER_CREATED, USER_UPDATED, USER_SUBSCRIBED, USER_UNSUBSCRIBED, USER_DEFAULT_SUBSCRIBER_ADDED, USER_DEFAULT_SUBSCRIBER_REMOVED
+
+            ORG_: ORG_CREATED, ORG_UPDATED, ORG_FIRST_LOGIN, ORG_OFFBOARD_IN_PROGRESS, ORG_OFFBOARD_SUCCESS, ORG_OFFBOARD_FAILED, ORG_SUBDOMAIN_SET, ORG_ASSESSMENT_DEFAULTS_CREATED, ORG_ASSESSMENT_DEFAULTS_UPDATED
+
+            ASSESSMENT_: ASSESSMENT_CREATED, ASSESSMENT_UPDATED, ASSESSMENT_COMPLETED, ASSESSMENT_CANCELLED, ASSESSMENT_CANCELLED_BY_VENDOR, ASSESSMENT_CANCELLED_BY_CLIENT, ASSESSMENT_CANCELLED_BY_AUDITOR, ASSESSMENT_CANCELLED_BY_ADMIN, ASSESSMENT_AUTOMATICALLY_CANCELLED, ASSESSMENT_EXPIRED, ASSESSMENT_AUDIT_COMPLETED, ASSESSMENT_STATUS_CHANGED
+
+            RELATIONSHIP_: RELATIONSHIP_CREATED, RELATIONSHIP_ARCHIVED, RELATIONSHIP_ONBOARDED, RELATIONSHIP_UPDATED, RISK_ACCEPTED, RISK_ACCEPTANCE_REVOKED, PRIMARY_CONTACT_CHANGED'
+          items:
+            type: string
+            default: ''
+            enum:
+            - USER_LOGGED_IN
+            - USER_LOGGED_OUT
+            - EXISTING_USER_FIRST_LOG_IN
+            - NEW_USER_FIRST_LOG_IN
+            - USER_UPLOADED_ARTIFACT
+            - USER_DOWNLOADED_ARTIFACT
+            - USER_EXPORTED_ARTIFACT
+            - USER_CREATED
+            - USER_UPDATED
+            - USER_SUBSCRIBED
+            - USER_UNSUBSCRIBED
+            - USER_DEFAULT_SUBSCRIBER_ADDED
+            - USER_DEFAULT_SUBSCRIBER_REMOVED
+            - ORG_CREATED
+            - ORG_UPDATED
+            - ORG_FIRST_LOGIN
+            - ORG_OFFBOARD_IN_PROGRESS
+            - ORG_OFFBOARD_SUCCESS
+            - ORG_OFFBOARD_FAILED
+            - ORG_SUBDOMAIN_SET
+            - ORG_ASSESSMENT_DEFAULTS_CREATED
+            - ORG_ASSESSMENT_DEFAULTS_UPDATED
+            - ASSESSMENT_CREATED
+            - ASSESSMENT_UPDATED
+            - ASSESSMENT_COMPLETED
+            - ASSESSMENT_CANCELLED
+            - ASSESSMENT_EXPIRED
+            - ASSESSMENT_AUDIT_COMPLETED
+            - ASSESSMENT_STATUS_CHANGED
+            - RELATIONSHIP_CREATED
+            - RELATIONSHIP_ARCHIVED
+            - RELATIONSHIP_ONBOARDED
+            - RELATIONSHIP_UPDATED
+            - RISK_ACCEPTED
+            - RISK_ACCEPTANCE_REVOKED
+            - PRIMARY_CONTACT_CHANGED
+          unevaluatedItems:
+            default: ''
+          uniqueItems: true
+      required:
+      - end
+      - start
+    AuditEvent:
+      type: object
+      properties:
+        auditEventType:
+          $ref: '#/components/schemas/AuditEventType'
+        dateTime:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

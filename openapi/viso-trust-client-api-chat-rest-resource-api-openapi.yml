@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-chat-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-chat-rest-resource
+paths:
+  /api/v1/chat:
+    post:
+      tags:
+      - client-api-chat-rest-resource
+      summary: Chat with VISO Agent
+      operationId: chat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VisoAgentClientChatRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisoAgentClientApiChatResponse'
+components:
+  schemas:
+    VisoAgentClientChatRequest:
+      type: object
+      properties:
+        conversationId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        message:
+          type: string
+          minLength: 1
+      required:
+      - message
+    VisoAgentClientApiChatResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          format: uuid
+        reply:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

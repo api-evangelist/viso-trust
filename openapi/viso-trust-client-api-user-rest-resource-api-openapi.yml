@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-user-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-user-rest-resource
+paths:
+  /api/v1/users:
+    get:
+      tags:
+      - client-api-user-rest-resource
+      summary: Get all users in your organization
+      operationId: getAllUsers
+      parameters:
+      - name: page
+        in: query
+        description: Results page you want to retrieve (0..N)
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: Number of records per page
+        schema:
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: 'Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.'
+        schema:
+          type: string
+          default: ''
+        example: lastName,asc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags:
+      - client-api-user-rest-resource
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/v1/users/{email}:
+    get:
+      tags:
+      - client-api-user-rest-resource
+      summary: Get user by email
+      operationId: getUserByEmail
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        businessUnit:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+    UserCreateRequest:
+      type: object
+      default: null
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - email
+      - firstName
+      - lastName
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

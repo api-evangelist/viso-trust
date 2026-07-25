@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-webhook-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-webhook-rest-resource
+paths:
+  /api/v1/webhooks:
+    get:
+      tags:
+      - client-api-webhook-rest-resource
+      summary: Get all webhooks for your organization
+      operationId: getAllWebhooksForClient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    put:
+      tags:
+      - client-api-webhook-rest-resource
+      summary: Update a webhook configuration
+      operationId: updateWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    post:
+      tags:
+      - client-api-webhook-rest-resource
+      summary: Register a webhook
+      operationId: registerWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /api/v1/webhooks/{webhookId}:
+    get:
+      tags:
+      - client-api-webhook-rest-resource
+      summary: Get webhook by id for your organization
+      operationId: getWebhookByIdForClient
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    delete:
+      tags:
+      - client-api-webhook-rest-resource
+      summary: Un-register a webhook
+      operationId: deleteWebhook
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    WebhookCreateUpdateRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        serviceType:
+          type: string
+          enum:
+          - GENERIC
+          - SLACK
+          - DISCORD
+          - TEAMS
+          - WORKATO
+        webhookUrl:
+          type: string
+        description:
+          type: string
+        eventTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - ASSESSMENT_COMPLETED
+            - ASSESSMENT_RECERTIFICATION_COMPLETED
+            - ASSESSMENT_REMEDIATION_COMPLETED
+            - ASSESSMENT_ARTIFACT_UPDATE_COMPLETED
+            - DOCS_ONLY_ARTIFACT_UPDATE_COMPLETED
+            - ASSESSMENT_REMINDER
+            - ASSESSMENT_CANCELLED
+            - ASSESSMENT_CANCELLED_BY_AUDITOR
+            - ASSESSMENT_AUTOMATICALLY_CANCELLED
+            - UPCOMING_RECERTIFICATION
+            - RELATIONSHIP_ONBOARDED
+            - RISK_ACCEPTED
+            - RELATIONSHIP_OVERDUE
+            - ARTIFACT_EXPIRING
+            - ARTIFACT_EXPIRED
+          uniqueItems: true
+    Webhook:
+      type: object
+      default: null
+      properties:
+        eventTypes:
+          type: array
+          default: ''
+          description: The events that will trigger this webhook.
+          items:
+            type: string
+          uniqueItems: true
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        serviceType:
+          type: string
+          enum:
+          - GENERIC
+          - SLACK
+          - DISCORD
+          - TEAMS
+          - WORKATO
+        webhookUrl:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/

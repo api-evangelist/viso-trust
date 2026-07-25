@@ -1,0 +1,460 @@
+openapi: 3.1.0
+info:
+  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-external-intelligence-report-rest-resource API
+  description: VISO TRUST
+  version: v1.0
+servers:
+- url: https://app.visotrust.com
+  description: VISO TRUST production API
+security:
+- bearerAuth: []
+tags:
+- name: client-api-external-intelligence-report-rest-resource
+paths:
+  /api/v1/external-intelligence-reports/security-scorecard:
+    post:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Create a new SecurityScorecard intelligence report
+      operationId: createSecurityScorecardIntelligenceReport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityScorecardReportCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
+  /api/v1/external-intelligence-reports/security-scorecard/bulk:
+    post:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Bulk create SecurityScorecard intelligence reports
+      operationId: bulkCreateSecurityScorecardIntelligenceReports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SecurityScorecardReportCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkExternalIntelligenceReportResponse'
+  /api/v1/external-intelligence-reports/recorded-future:
+    post:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Create a new Recorded Future intelligence report
+      operationId: createRecordedFutureIntelligenceReport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecordedFutureReportCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
+  /api/v1/external-intelligence-reports/recorded-future/bulk:
+    post:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Bulk create Recorded Future intelligence reports
+      operationId: bulkCreateRecordedFutureIntelligenceReports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RecordedFutureReportCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkExternalIntelligenceReportResponse'
+  /api/v1/external-intelligence-reports/bitsight:
+    post:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Create a new BitSight intelligence report
+      operationId: createBitsightIntelligenceReport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BitsightReportCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
+  /api/v1/external-intelligence-reports/bitsight/bulk:
+    post:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Bulk create BitSight intelligence reports
+      operationId: bulkCreateBitsightIntelligenceReports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/BitsightReportCreateInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkExternalIntelligenceReportResponse'
+  /api/v1/external-intelligence-reports/vendor/{vendorDomain}:
+    get:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Get all intelligence reports for a specific vendor
+      operationId: getIntelligenceReportsByVendor
+      parameters:
+      - name: vendorDomain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
+  /api/v1/external-intelligence-reports/vendor/{vendorDomain}/latest/{source}:
+    get:
+      tags:
+      - client-api-external-intelligence-report-rest-resource
+      summary: Get the latest intelligence report for a vendor from a specific source
+      operationId: getLatestIntelligenceReport
+      parameters:
+      - name: vendorDomain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: source
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - SECURITY_SCORECARD
+          - BITSIGHT
+          - RECORDED_FUTURE
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
+components:
+  schemas:
+    BulkExternalIntelligenceReportResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          format: int32
+        created:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        backgroundedCount:
+          type: integer
+          format: int32
+        backgrounded:
+          type: boolean
+        totalFailureCount:
+          type: integer
+          format: int32
+    ExternalIntelligenceReportClientView:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clientOrgId:
+          type: integer
+          format: int64
+        clientOrgName:
+          type: string
+        vendorOrgId:
+          type: integer
+          format: int64
+        vendorOrgName:
+          type: string
+        vendorOrgDescription:
+          type:
+          - string
+          - 'null'
+        vendorOrgFaviconUrl:
+          type:
+          - string
+          - 'null'
+        source:
+          type: string
+          enum:
+          - SECURITY_SCORECARD
+          - BITSIGHT
+          - RECORDED_FUTURE
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        rating:
+          type:
+          - string
+          - 'null'
+        typeName:
+          type: string
+        guid:
+          type:
+          - string
+          - 'null'
+        customId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        primaryDomain:
+          type:
+          - string
+          - 'null'
+        ratingRange:
+          type:
+          - string
+          - 'null'
+        ratingColor:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type:
+          - string
+          - 'null'
+        ratingValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        grade:
+          type:
+          - string
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        triggeredRuleCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        maxRuleCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        firstSeen:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastSeen:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        criticalityLabel:
+          type:
+          - string
+          - 'null'
+    SecurityScorecardReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        grade:
+          type: string
+        domain:
+          type:
+          - string
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - grade
+    RecordedFutureReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        entityType:
+          type: string
+        entity:
+          type: string
+        riskScore:
+          type: integer
+          format: int32
+        riskLevel:
+          type: string
+        firstSeen:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastSeen:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        triggeredRuleCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        maxRuleCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        summary:
+          type:
+          - string
+          - 'null'
+        criticalityLabel:
+          type:
+          - string
+          - 'null'
+      required:
+      - entity
+      - entityType
+      - riskLevel
+      - riskScore
+    BitsightReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        guid:
+          type: string
+        customId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        primaryDomain:
+          type:
+          - string
+          - 'null'
+        ratingRange:
+          type:
+          - string
+          - 'null'
+        ratingColor:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type:
+          - string
+          - 'null'
+        rating:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - guid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`.
+externalDocs:
+  description: VISO TRUST Support Documentation
+  url: https://support.visotrust.com/
