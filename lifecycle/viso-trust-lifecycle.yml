@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/viso-trust-openapi-original.json
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+  platform_scheme: semver
+  platform_current: v3.53.1
+  docs: https://docs.visotrust.com/api-reference/authentication
+status_page: https://status.visotrust.com/
+changelog: https://docs.visotrust.com/resources/changelog
+deprecation:
+  policy_documented: false
+  notes: No formal deprecation/sunset policy or RFC 8594 Sunset/Deprecation header support is published.
+sla:
+  documented: false
+deprecated_operations: []
+notes: Status page live at status.visotrust.com. Dated release notes published each update. No deprecation
+  policy published.

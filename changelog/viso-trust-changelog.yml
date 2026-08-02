@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.visotrust.com/resources/changelog
+type: ChangeLog
+scheme: semver-platform
+current_version: v3.53.1
+notes: Platform release notes are published with every update. The Client API is versioned separately
+  at uri-path v1. Recent window captured below.
+entries:
+- version: v3.53.1
+  date: '2026-07-10'
+  breaking: false
+  highlights:
+  - Fixed Integrations page failing to load with a Workato connection configured.
+- version: v3.53.0
+  date: '2026-07-09'
+  breaking: false
+  highlights:
+  - Added filtering options to the relationship search endpoint in the Client API.
+  - API documentation now published publicly at docs.visotrust.com.
+  - AI controls now scope only from the AI Systems intake question.
+  - Vendor directory profile adds a Relationships view with executive summary.
+- version: v3.52.2
+  date: '2026-06-30'
+  breaking: false
+  highlights:
+  - Fixed detections not displaying on Trust > Artifact Intelligence.
+- version: v3.52.1
+  date: '2026-06-26'
+  breaking: false
+  highlights:
+  - Resolved an issue with the new Admin user role.
+- version: v3.52.0
+  date: '2026-06-25'
+  breaking: false
+  highlights:
+  - New Assessment Lead role.
+  - Control validation side panel.
+  - Artifact glossary updates.
+  - Smarter public research.

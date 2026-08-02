@@ -1,0 +1,158 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/viso-trust-openapi-original.json
+server:
+  name: viso-trust
+  transport: http
+notes: Candidate MCP tool surface derived one-to-one from the published VISO TRUST Client API v1 OpenAPI
+  operations. No official hosted MCP server was found. Tools require a VISO TRUST bearer API token.
+tools:
+- name: getAllWebhooksForClient
+  description: Get all webhooks for your organization
+  source_operation: openapi/viso-trust-openapi-original.json#getAllWebhooksForClient
+- name: updateWebhook
+  description: Update a webhook configuration
+  source_operation: openapi/viso-trust-openapi-original.json#updateWebhook
+- name: registerWebhook
+  description: Register a webhook
+  source_operation: openapi/viso-trust-openapi-original.json#registerWebhook
+- name: updateThirdPartyContact
+  description: Update third party contact details for a relationship
+  source_operation: openapi/viso-trust-openapi-original.json#updateThirdPartyContact
+- name: getAllRelationshipsForCurrentUser
+  description: Get a list of all relationships and their assessment details
+  source_operation: openapi/viso-trust-openapi-original.json#getAllRelationshipsForCurrentUser
+- name: updateRelationshipAsCurrentUser
+  description: Update a relationship
+  source_operation: openapi/viso-trust-openapi-original.json#updateRelationshipAsCurrentUser
+- name: createRelationshipAsCurrentUser
+  description: Create a Relationship
+  source_operation: openapi/viso-trust-openapi-original.json#createRelationshipAsCurrentUser
+- name: partiallyUpdateRelationshipAsCurrentUser
+  description: Partially update a relationship
+  source_operation: openapi/viso-trust-openapi-original.json#partiallyUpdateRelationshipAsCurrentUser
+- name: getQuestionnairesForRelationship
+  description: Get all questionnaires available for a relationship.
+  source_operation: openapi/viso-trust-openapi-original.json#getQuestionnairesForRelationship
+- name: updateQuestionnairesForRelationship
+  description: Update which questionnaires are enabled for a relationship.
+  source_operation: openapi/viso-trust-openapi-original.json#updateQuestionnairesForRelationship
+- name: onboardRelationship
+  description: Onboard a relationship
+  source_operation: openapi/viso-trust-openapi-original.json#onboardRelationship
+- name: offboardRelationship
+  description: Mark a relationship as not onboarded
+  source_operation: openapi/viso-trust-openapi-original.json#offboardRelationship
+- name: archiveRelationship
+  description: Archive a relationship
+  source_operation: openapi/viso-trust-openapi-original.json#archiveRelationship
+- name: updateFollowup
+  description: Update the follow-up settings of an in-progress assessment
+  source_operation: openapi/viso-trust-openapi-original.json#updateFollowup
+- name: updateExpirationDate
+  description: Update the expiration date of an in-progress assessment
+  source_operation: openapi/viso-trust-openapi-original.json#updateExpirationDate
+- name: getAllUsers
+  description: Get all users in your organization
+  source_operation: openapi/viso-trust-openapi-original.json#getAllUsers
+- name: createUser
+  description: createUser
+  source_operation: openapi/viso-trust-openapi-original.json#createUser
+- name: createTagsAsCurrentUser
+  description: Create tags
+  source_operation: openapi/viso-trust-openapi-original.json#createTagsAsCurrentUser
+- name: getSearchRelationshipsAsCurrentUser
+  description: Search for relationships by domain/name (deprecated)
+  source_operation: openapi/viso-trust-openapi-original.json#getSearchRelationshipsAsCurrentUser
+- name: searchRelationshipsAsCurrentUser
+  description: Search for relationships by domain/name
+  source_operation: openapi/viso-trust-openapi-original.json#searchRelationshipsAsCurrentUser
+- name: createRelationshipAsCurrentUserByDomain
+  description: Create a Relationship by domain
+  source_operation: openapi/viso-trust-openapi-original.json#createRelationshipAsCurrentUserByDomain
+- name: createSecurityScorecardIntelligenceReport
+  description: Create a new SecurityScorecard intelligence report
+  source_operation: openapi/viso-trust-openapi-original.json#createSecurityScorecardIntelligenceReport
+- name: bulkCreateSecurityScorecardIntelligenceReports
+  description: Bulk create SecurityScorecard intelligence reports
+  source_operation: openapi/viso-trust-openapi-original.json#bulkCreateSecurityScorecardIntelligenceReports
+- name: createRecordedFutureIntelligenceReport
+  description: Create a new Recorded Future intelligence report
+  source_operation: openapi/viso-trust-openapi-original.json#createRecordedFutureIntelligenceReport
+- name: bulkCreateRecordedFutureIntelligenceReports
+  description: Bulk create Recorded Future intelligence reports
+  source_operation: openapi/viso-trust-openapi-original.json#bulkCreateRecordedFutureIntelligenceReports
+- name: createBitsightIntelligenceReport
+  description: Create a new BitSight intelligence report
+  source_operation: openapi/viso-trust-openapi-original.json#createBitsightIntelligenceReport
+- name: bulkCreateBitsightIntelligenceReports
+  description: Bulk create BitSight intelligence reports
+  source_operation: openapi/viso-trust-openapi-original.json#bulkCreateBitsightIntelligenceReports
+- name: chat
+  description: Chat with VISO Agent
+  source_operation: openapi/viso-trust-openapi-original.json#chat
+- name: getAllAuditLogEventsRest
+  description: Get all user audit log events for your organization in the time frame, limited to 500 records
+  source_operation: openapi/viso-trust-openapi-original.json#getAllAuditLogEventsRest
+- name: getFilteredAuditLogEventsRest
+  description: Get filtered audit log events based on specific types and categories for your organization,
+    limited to 500 records
+  source_operation: openapi/viso-trust-openapi-original.json#getFilteredAuditLogEventsRest
+- name: createAssessment
+  description: Start an Assessment
+  source_operation: openapi/viso-trust-openapi-original.json#createAssessment
+- name: getWebhookByIdForClient
+  description: Get webhook by id for your organization
+  source_operation: openapi/viso-trust-openapi-original.json#getWebhookByIdForClient
+- name: deleteWebhook
+  description: Un-register a webhook
+  source_operation: openapi/viso-trust-openapi-original.json#deleteWebhook
+- name: getVendorRiskSummaryById
+  description: Get vendor risk summary by vendor ID
+  source_operation: openapi/viso-trust-openapi-original.json#getVendorRiskSummaryById
+- name: getVendorRiskSummaryByNameOrDomain
+  description: Get vendor risk summary by vendor name or domain
+  source_operation: openapi/viso-trust-openapi-original.json#getVendorRiskSummaryByNameOrDomain
+- name: getUserByEmail
+  description: Get user by email
+  source_operation: openapi/viso-trust-openapi-original.json#getUserByEmail
+- name: getRelationshipForCurrentUser
+  description: Get a relationship and its assessment details
+  source_operation: openapi/viso-trust-openapi-original.json#getRelationshipForCurrentUser
+- name: downloadRelationshipArtifacts
+  description: Download active artifacts for a relationship as a zip
+  source_operation: openapi/viso-trust-openapi-original.json#downloadRelationshipArtifacts
+- name: getAssessmentsForRelationship
+  description: Get assessment history for a relationship
+  source_operation: openapi/viso-trust-openapi-original.json#getAssessmentsForRelationship
+- name: getAllQuestionnairesForCurrentClient
+  description: Get all questionnaires available to your organization.
+  source_operation: openapi/viso-trust-openapi-original.json#getAllQuestionnairesForCurrentClient
+- name: getIntelligenceReportsByVendor
+  description: Get all intelligence reports for a specific vendor
+  source_operation: openapi/viso-trust-openapi-original.json#getIntelligenceReportsByVendor
+- name: getLatestIntelligenceReport
+  description: Get the latest intelligence report for a vendor from a specific source
+  source_operation: openapi/viso-trust-openapi-original.json#getLatestIntelligenceReport
+- name: getVendorDirectoryByDomainOrUrl
+  description: getVendorDirectoryByDomainOrUrl
+  source_operation: openapi/viso-trust-openapi-original.json#getVendorDirectoryByDomainOrUrl
+- name: getAllDataTypesForCurrentClient
+  description: Get all data types for your organization.
+  source_operation: openapi/viso-trust-openapi-original.json#getAllDataTypesForCurrentClient
+- name: getAllContextTypes
+  description: Get all business cases for your organization.
+  source_operation: openapi/viso-trust-openapi-original.json#getAllContextTypes
+- name: getAssessment
+  description: Get an assessment
+  source_operation: openapi/viso-trust-openapi-original.json#getAssessment
+- name: getAssessmentSummary
+  description: Get the summary for an assessment
+  source_operation: openapi/viso-trust-openapi-original.json#getAssessmentSummary
+- name: exportSummaryPdf
+  description: Export the LLM assessment summary as a PDF
+  source_operation: openapi/viso-trust-openapi-original.json#exportSummaryPdf
+- name: downloadAssessmentArtifacts
+  description: Download artifacts for an assessment as a zip
+  source_operation: openapi/viso-trust-openapi-original.json#downloadAssessmentArtifacts

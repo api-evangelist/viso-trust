@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viso-trust-openapi-original.json
+docs: https://visotrust.com/security/
+summary: Standards conformance derived from the published OpenAPI plus compliance
+  claims on the VISO TRUST security page.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses HTTP bearer token auth, not OAuth2.
+- id: openid-connect
+  conforms: false
+- id: http-bearer-auth
+  conforms: true
+  evidence: securitySchemes.bearerAuth type=http scheme=bearer
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json responses declared in the OpenAPI
+- id: pagination
+  conforms: true
+  evidence: page/size/sort query parameters on list endpoints
+- id: webhooks
+  conforms: true
+  evidence: outbound webhook management surface with 14 documented event types
+- id: soc2-type2
+  conforms: true
+  evidence: "VISO TRUST states it has achieved AICPA SOC 2 Type 2 (visotrust.com/security)"
+- id: iso-27001
+  conforms: false
+  evidence: "stated as in progress / being pursued, not yet certified"
+- id: nist-ai-rmf
+  conforms: true
+  evidence: "aligned with the NIST AI Risk Management Framework per trustworthy AI policy"

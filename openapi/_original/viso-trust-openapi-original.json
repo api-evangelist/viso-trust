@@ -1,0 +1,3531 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "VISO TRUST API Documentation",
+    "description": "VISO TRUST",
+    "version": "v1.0"
+  },
+  "externalDocs": {
+    "description": "VISO TRUST Support Documentation",
+    "url": "https://support.visotrust.com/"
+  },
+  "servers": [
+    {
+      "url": "https://app.visotrust.com",
+      "description": "VISO TRUST production API"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/webhooks": {
+      "get": {
+        "tags": [
+          "client-api-webhook-rest-resource"
+        ],
+        "summary": "Get all webhooks for your organization",
+        "operationId": "getAllWebhooksForClient",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Webhook"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "client-api-webhook-rest-resource"
+        ],
+        "summary": "Update a webhook configuration",
+        "operationId": "updateWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "client-api-webhook-rest-resource"
+        ],
+        "summary": "Register a webhook",
+        "operationId": "registerWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookCreateUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/third-party-contact": {
+      "put": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Update third party contact details for a relationship",
+        "operationId": "updateThirdPartyContact",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThirdPartyContactUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships": {
+      "get": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Get a list of all relationships and their assessment details",
+        "operationId": "getAllRelationshipsForCurrentUser",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relationship"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Update a relationship",
+        "operationId": "updateRelationshipAsCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipUpdateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Create a Relationship",
+        "operationId": "createRelationshipAsCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Partially update a relationship",
+        "operationId": "partiallyUpdateRelationshipAsCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipUpdateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/{id}/questionnaires": {
+      "get": {
+        "tags": [
+          "client-api-questionnaire-rest-resource"
+        ],
+        "summary": "Get all questionnaires available for a relationship.",
+        "description": "Returns every active organization-level questionnaire alongside its effective enabled state for the given relationship. A questionnaire is enabled for the relationship when it has been explicitly enabled via `PUT /relationships/{id}/questionnaires`, or when no relationship-level configuration exists and the questionnaire is enabled at the organization level.",
+        "operationId": "getQuestionnairesForRelationship",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipQuestionnaireView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "client-api-questionnaire-rest-resource"
+        ],
+        "summary": "Update which questionnaires are enabled for a relationship.",
+        "description": "Replaces the relationship's enabled-questionnaire list with the provided ids. Any active organization questionnaire not included in `enabledQuestionnaireIds` is disabled for the relationship.",
+        "operationId": "updateQuestionnairesForRelationship",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipQuestionnairesUpdateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipQuestionnaireView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/{id}/onboard": {
+      "put": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Onboard a relationship",
+        "operationId": "onboardRelationship",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipOnboardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/{id}/offboard": {
+      "put": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Mark a relationship as not onboarded",
+        "operationId": "offboardRelationship",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/{id}/archive": {
+      "put": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Archive a relationship",
+        "operationId": "archiveRelationship",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{id}/followup": {
+      "put": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Update the follow-up settings of an in-progress assessment",
+        "operationId": "updateFollowup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAssessmentFollowupInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{id}/expiration-date": {
+      "put": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Update the expiration date of an in-progress assessment",
+        "operationId": "updateExpirationDate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAssessmentExpirationInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "tags": [
+          "client-api-user-rest-resource"
+        ],
+        "summary": "Get all users in your organization",
+        "operationId": "getAllUsers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Results page you want to retrieve (0..N)",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of records per page",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "lastName,asc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "client-api-user-rest-resource"
+        ],
+        "operationId": "createUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tags": {
+      "post": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Create tags",
+        "operationId": "createTagsAsCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagsCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/search": {
+      "get": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Search for relationships by domain/name (deprecated)",
+        "operationId": "getSearchRelationshipsAsCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipSearchInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relationship"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      },
+      "post": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Search for relationships by domain/name",
+        "operationId": "searchRelationshipsAsCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipSearchInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Relationship"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/domain": {
+      "post": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Create a Relationship by domain",
+        "operationId": "createRelationshipAsCurrentUserByDomain",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRelationshipByDomainRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/security-scorecard": {
+      "post": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Create a new SecurityScorecard intelligence report",
+        "operationId": "createSecurityScorecardIntelligenceReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SecurityScorecardReportCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalIntelligenceReportClientView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/security-scorecard/bulk": {
+      "post": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Bulk create SecurityScorecard intelligence reports",
+        "operationId": "bulkCreateSecurityScorecardIntelligenceReports",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SecurityScorecardReportCreateInput"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkExternalIntelligenceReportResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/recorded-future": {
+      "post": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Create a new Recorded Future intelligence report",
+        "operationId": "createRecordedFutureIntelligenceReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordedFutureReportCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalIntelligenceReportClientView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/recorded-future/bulk": {
+      "post": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Bulk create Recorded Future intelligence reports",
+        "operationId": "bulkCreateRecordedFutureIntelligenceReports",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RecordedFutureReportCreateInput"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkExternalIntelligenceReportResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/bitsight": {
+      "post": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Create a new BitSight intelligence report",
+        "operationId": "createBitsightIntelligenceReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BitsightReportCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalIntelligenceReportClientView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/bitsight/bulk": {
+      "post": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Bulk create BitSight intelligence reports",
+        "operationId": "bulkCreateBitsightIntelligenceReports",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BitsightReportCreateInput"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkExternalIntelligenceReportResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/chat": {
+      "post": {
+        "tags": [
+          "client-api-chat-rest-resource"
+        ],
+        "summary": "Chat with VISO Agent",
+        "operationId": "chat",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VisoAgentClientChatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisoAgentClientApiChatResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/audit-log/user-events": {
+      "post": {
+        "tags": [
+          "client-api-audit-log-rest-resource"
+        ],
+        "summary": "Get all user audit log events for your organization in the time frame, limited to 500 records",
+        "operationId": "getAllAuditLogEventsRest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditLogFilterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserAuditEvent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/audit-log/events": {
+      "post": {
+        "tags": [
+          "client-api-audit-log-rest-resource"
+        ],
+        "summary": "Get filtered audit log events based on specific types and categories for your organization, limited to 500 records",
+        "operationId": "getFilteredAuditLogEventsRest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditLogFilterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditEvent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments": {
+      "post": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Start an Assessment",
+        "operationId": "createAssessment",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string",
+                    "description": "Information necessary to start the assessment.\n\nRecipient details are optional. When all of `recipientEmail`, `recipientFirstName`, and `recipientLastName`\nare omitted, the assessment is started in research mode (no vendor contact). Research-mode assessments\nmay also include any combination of uploaded `files` and/or `publicDocumentUrls`; if neither is provided,\nVISO will run public information search only.\n\nExample (vendor-contact assessment):\n{\n    \"relationshipId\": 1,\n    \"recipientEmail\": \"dan@example.com\",\n    \"recipientFirstName\": \"Dan\",\n    \"recipientLastName\": \"Example\",\n    \"publicDocumentUrls\": [\"google.com\"],\n    \"followupType\": \"MANUAL\",\n    \"followupRiskThreshold\": null,\n    \"followupTimeline\": null,\n    \"collectionTimeline\": null,\n    \"noVendorResponseAction\": null,\n    \"aiProcessingOnly\": false,\n    \"questionnaires\": [\"00000000-0000-0000-0000-000000000000\"]\n}\n\nExample (research-only assessment):\n{\n    \"relationshipId\": 1\n}"
+                  },
+                  "files": {
+                    "type": "array",
+                    "description": "Any files to associate with the assessment",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "required": [
+                  "request"
+                ]
+              },
+              "encoding": {
+                "request": {
+                  "contentType": "multipart/form-data"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assessment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/webhooks/{webhookId}": {
+      "get": {
+        "tags": [
+          "client-api-webhook-rest-resource"
+        ],
+        "summary": "Get webhook by id for your organization",
+        "operationId": "getWebhookByIdForClient",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "client-api-webhook-rest-resource"
+        ],
+        "summary": "Un-register a webhook",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/vendors/{id}/risk-summary": {
+      "get": {
+        "tags": [
+          "client-api-vendor-risk-summary-rest-resource"
+        ],
+        "summary": "Get vendor risk summary by vendor ID",
+        "operationId": "getVendorRiskSummaryById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorRiskSummaryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vendors/risk-summary": {
+      "get": {
+        "tags": [
+          "client-api-vendor-risk-summary-rest-resource"
+        ],
+        "summary": "Get vendor risk summary by vendor name or domain",
+        "operationId": "getVendorRiskSummaryByNameOrDomain",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorRiskSummaryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{email}": {
+      "get": {
+        "tags": [
+          "client-api-user-rest-resource"
+        ],
+        "summary": "Get user by email",
+        "operationId": "getUserByEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/{id}": {
+      "get": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Get a relationship and its assessment details",
+        "operationId": "getRelationshipForCurrentUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Relationship"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationships/{id}/artifacts": {
+      "get": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Download active artifacts for a relationship as a zip",
+        "operationId": "downloadRelationshipArtifacts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamingResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/relationship/{id}/assessments": {
+      "get": {
+        "tags": [
+          "client-api-relationship-rest-resource"
+        ],
+        "summary": "Get assessment history for a relationship",
+        "operationId": "getAssessmentsForRelationship",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Assessment"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/questionnaires": {
+      "get": {
+        "tags": [
+          "client-api-questionnaire-rest-resource"
+        ],
+        "summary": "Get all questionnaires available to your organization.",
+        "description": "Returns the active questionnaires configured for your organization. Use `GET /relationships/{id}/questionnaires` to see which questionnaires are enabled for a particular relationship, and `PUT /relationships/{id}/questionnaires` to enable or disable them per relationship before passing their ids to the Start Assessment endpoint via the `questionnaires` field.",
+        "operationId": "getAllQuestionnairesForCurrentClient",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuestionnaireView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/vendor/{vendorDomain}": {
+      "get": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Get all intelligence reports for a specific vendor",
+        "operationId": "getIntelligenceReportsByVendor",
+        "parameters": [
+          {
+            "name": "vendorDomain",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalIntelligenceReportClientView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/external-intelligence-reports/vendor/{vendorDomain}/latest/{source}": {
+      "get": {
+        "tags": [
+          "client-api-external-intelligence-report-rest-resource"
+        ],
+        "summary": "Get the latest intelligence report for a vendor from a specific source",
+        "operationId": "getLatestIntelligenceReport",
+        "parameters": [
+          {
+            "name": "vendorDomain",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "SECURITY_SCORECARD",
+                "BITSIGHT",
+                "RECORDED_FUTURE"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalIntelligenceReportClientView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/directory/search": {
+      "get": {
+        "tags": [
+          "client-api-vendor-directory-rest-resource"
+        ],
+        "operationId": "getVendorDirectoryByDomainOrUrl",
+        "parameters": [
+          {
+            "name": "urlOrDomain",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorDirectoryView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/data-types": {
+      "get": {
+        "tags": [
+          "client-api-data-type-rest-resource"
+        ],
+        "summary": "Get all data types for your organization.",
+        "operationId": "getAllDataTypesForCurrentClient",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataTypeView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/business-cases": {
+      "get": {
+        "tags": [
+          "client-api-context-type-rest-resource"
+        ],
+        "summary": "Get all business cases for your organization.",
+        "operationId": "getAllContextTypes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContextTypeView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{id}": {
+      "get": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Get an assessment",
+        "operationId": "getAssessment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assessment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{id}/summary": {
+      "get": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Get the summary for an assessment",
+        "operationId": "getAssessmentSummary",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentSummaryView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{id}/summary/export": {
+      "get": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Export the LLM assessment summary as a PDF",
+        "operationId": "exportSummaryPdf",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamingResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assessments/{id}/artifacts": {
+      "get": {
+        "tags": [
+          "client-api-assessment-rest-resource"
+        ],
+        "summary": "Download artifacts for an assessment as a zip",
+        "operationId": "downloadAssessmentArtifacts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamingResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "API token generated from your VISO TRUST user profile. Send it in the `Authorization` header as `Bearer <token>`."
+      }
+    },
+    "schemas": {
+      "WebhookCreateUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "serviceType": {
+            "type": "string",
+            "enum": [
+              "GENERIC",
+              "SLACK",
+              "DISCORD",
+              "TEAMS",
+              "WORKATO"
+            ]
+          },
+          "webhookUrl": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "eventTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ASSESSMENT_COMPLETED",
+                "ASSESSMENT_RECERTIFICATION_COMPLETED",
+                "ASSESSMENT_REMEDIATION_COMPLETED",
+                "ASSESSMENT_ARTIFACT_UPDATE_COMPLETED",
+                "DOCS_ONLY_ARTIFACT_UPDATE_COMPLETED",
+                "ASSESSMENT_REMINDER",
+                "ASSESSMENT_CANCELLED",
+                "ASSESSMENT_CANCELLED_BY_AUDITOR",
+                "ASSESSMENT_AUTOMATICALLY_CANCELLED",
+                "UPCOMING_RECERTIFICATION",
+                "RELATIONSHIP_ONBOARDED",
+                "RISK_ACCEPTED",
+                "RELATIONSHIP_OVERDUE",
+                "ARTIFACT_EXPIRING",
+                "ARTIFACT_EXPIRED"
+              ]
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "Webhook": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "eventTypes": {
+            "type": "array",
+            "default": "",
+            "description": "The events that will trigger this webhook.",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "serviceType": {
+            "type": "string",
+            "enum": [
+              "GENERIC",
+              "SLACK",
+              "DISCORD",
+              "TEAMS",
+              "WORKATO"
+            ]
+          },
+          "webhookUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "ThirdPartyContactUpdateRequest": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "relationshipId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "relationshipId"
+        ]
+      },
+      "Assessment": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requestedAuditTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "aiProcessingOnly": {
+            "type": "boolean"
+          },
+          "collectionTimeline": {
+            "type": "string",
+            "enum": [
+              "SEVEN_DAYS",
+              "FOURTEEN_DAYS",
+              "THIRTY_DAYS",
+              "SIXTY_DAYS",
+              "NINETY_DAYS",
+              "ONE_HUNDRED_TWENTY_DAYS"
+            ]
+          },
+          "followupTimeline": {
+            "type": "string",
+            "enum": [
+              "SEVEN_DAYS",
+              "FOURTEEN_DAYS",
+              "THIRTY_DAYS",
+              "SIXTY_DAYS",
+              "NINETY_DAYS"
+            ]
+          },
+          "followupType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTOMATIC",
+              "CONCIERGE"
+            ]
+          },
+          "sentToFirstName": {
+            "type": "string"
+          },
+          "sentToLastName": {
+            "type": "string"
+          },
+          "createdReason": {
+            "type": "string",
+            "enum": [
+              "INITIAL_ASSESSMENT",
+              "ARTIFACTS_EXPIRED",
+              "RECERTIFICATION_INITIATED",
+              "BUSINESS_CASE_OR_DATA_TYPES_CHANGED",
+              "THIRD_PARTY_CONTACT_UPDATED",
+              "ARTIFACTS_UPLOADED_ON_RELATIONSHIP",
+              "REMEDIATION",
+              "RISK_ADVISORY_RESPONSE",
+              "INSTANT_ANALYSIS",
+              "PUBLIC_SEARCH"
+            ]
+          },
+          "assessmentType": {
+            "type": "string"
+          },
+          "statusHistories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssessmentStatusHistory"
+            },
+            "uniqueItems": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssessmentRecommendation"
+            },
+            "uniqueItems": true
+          },
+          "completedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "summary": {
+            "type": "string",
+            "default": "",
+            "deprecated": true
+          },
+          "phaseDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sentToEmail": {
+            "type": "string"
+          },
+          "sentBy": {
+            "$ref": "#/components/schemas/VisoUser"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NOT_ASSESSED",
+              "AWAITING_REMEDIATION",
+              "STARTED",
+              "REVIEW_STARTED",
+              "AUDIT_COMPLETED",
+              "COMPLETED",
+              "CANCELLED",
+              "DELETED",
+              "COLLECTING_INFORMATION"
+            ]
+          },
+          "requestedArtifactCollection": {
+            "type": "boolean"
+          },
+          "noVendorResponseAction": {
+            "type": "string",
+            "enum": [
+              "CLOSE_COLLECTION_REQUEST",
+              "NOTIFY_ME"
+            ]
+          },
+          "followupRiskThreshold": {
+            "type": "string",
+            "enum": [
+              "NO_CONTEXT",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "EXTREME"
+            ]
+          }
+        }
+      },
+      "AssessmentRecommendation": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "recommendationType": {
+            "type": "string",
+            "enum": [
+              "EXPIRED",
+              "HIGH_ASSURANCE",
+              "CONTROL_DOMAINS",
+              "COMBINED",
+              "CERT_ONLY",
+              "LOW_COVERAGE",
+              "PRESUMED_ARTIFACT"
+            ]
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AssessmentStatusHistory": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NOT_ASSESSED",
+              "AWAITING_REMEDIATION",
+              "STARTED",
+              "REVIEW_STARTED",
+              "AUDIT_COMPLETED",
+              "COMPLETED",
+              "CANCELLED",
+              "DELETED",
+              "COLLECTING_INFORMATION"
+            ]
+          }
+        }
+      },
+      "PrimaryContact": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Relationship": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "homepage": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "businessUnit": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recertificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ARCHIVED",
+              "NOT_ONBOARDED",
+              "ONBOARDED",
+              "PURGED"
+            ]
+          },
+          "inherentRisk": {
+            "type": "string",
+            "enum": [
+              "NO_CONTEXT",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "EXTREME"
+            ]
+          },
+          "inherentRiskScore": {
+            "type": "number",
+            "format": "float"
+          },
+          "residualRisk": {
+            "type": "string",
+            "enum": [
+              "NO_CONTEXT",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "EXTREME"
+            ]
+          },
+          "residualRiskScore": {
+            "type": "number",
+            "format": "float"
+          },
+          "isTransitional": {
+            "type": "boolean"
+          },
+          "contextTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SlimContextTypeView"
+            },
+            "uniqueItems": true
+          },
+          "dataTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SlimDataTypeView"
+            },
+            "uniqueItems": true
+          },
+          "businessOwner": {
+            "$ref": "#/components/schemas/VisoUser"
+          },
+          "assessmentLead": {
+            "$ref": "#/components/schemas/VisoUser"
+          },
+          "recertificationType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTOMATIC",
+              "NONE"
+            ]
+          },
+          "subscribers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisoUser"
+            },
+            "uniqueItems": true
+          },
+          "primaryContact": {
+            "$ref": "#/components/schemas/PrimaryContact"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "tier": {
+            "type": "string"
+          },
+          "complianceStandards": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "C5",
+                "CCPA",
+                "CSA_STAR",
+                "CSA_LEVEL2",
+                "FEDRAMP",
+                "GDPR",
+                "GLBA",
+                "HIPAA",
+                "HITRUST",
+                "ISO27001",
+                "ISO27017",
+                "ISO27018",
+                "ISO27701",
+                "ISO21434",
+                "ISO22301",
+                "ISO42001",
+                "ISOIEC_2700127002",
+                "ISOIEC_2701727002",
+                "ISOIEC_2701827002",
+                "PCIDSS",
+                "PRIVACY_SHIELD",
+                "SOC1",
+                "SOC2",
+                "SOC3",
+                "TISAXREPORTLEVEL3"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "latestAssessment": {
+            "$ref": "#/components/schemas/Assessment"
+          },
+          "riskAcceptanceStatus": {
+            "type": "string",
+            "enum": [
+              "RISK_ACCEPTED",
+              "REVIEW_NEEDED",
+              "REMEDIATION_REQUESTED"
+            ]
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "dimensionCoverage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RiskDimensionCoverageDTO"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "RiskDimensionCoverageDTO": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "string"
+          },
+          "inScope": {
+            "type": "boolean"
+          },
+          "coverage": {
+            "type": "string"
+          },
+          "coveragePercentage": {
+            "type": "string"
+          }
+        }
+      },
+      "SlimContextTypeView": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "SlimDataTypeView": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "VisoUser": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "businessUnit": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "ContextType": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DataType": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "RelationshipUpdateInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "homepage": {
+            "type": "string",
+            "pattern": "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|(?!(.*www\\.){1})[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})|"
+          },
+          "description": {
+            "type": "string"
+          },
+          "contextTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextType"
+            }
+          },
+          "dataTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataType"
+            }
+          },
+          "businessOwnerFirstName": {
+            "type": "string"
+          },
+          "businessOwnerLastName": {
+            "type": "string"
+          },
+          "businessOwnerEmail": {
+            "type": "string"
+          },
+          "assessmentLeadFirstName": {
+            "type": "string"
+          },
+          "assessmentLeadLastName": {
+            "type": "string"
+          },
+          "assessmentLeadEmail": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 0
+          },
+          "tier": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 5,
+            "minimum": 1
+          }
+        }
+      },
+      "RelationshipQuestionnairesUpdateInput": {
+        "type": "object",
+        "default": null,
+        "description": "Replaces the relationship's enabled-questionnaire list. Every active organization-level questionnaire not included in `enabledQuestionnaireIds` is marked disabled for the relationship, overriding the organization-level default.",
+        "properties": {
+          "enabledQuestionnaireIds": {
+            "type": "array",
+            "default": "",
+            "description": "Ids of questionnaires to enable for this relationship. Each id must reference an active organization-level questionnaire returned by `GET /questionnaires` or `GET /relationships/{id}/questionnaires`; unknown ids return 404. Pass an empty set to disable all questionnaires for the relationship.",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "enabledQuestionnaireIds"
+        ]
+      },
+      "RelationshipQuestionnaireView": {
+        "type": "object",
+        "default": null,
+        "description": "A questionnaire available to your organization, with the effective enabled state for a specific relationship.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "True if this questionnaire will be answered when an assessment is started for this relationship. Reflects relationship-level overrides, falling back to the organization-level enabled flag when no override exists."
+          },
+          "aiOnly": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, the questionnaire is answered by AI by default and is not sent to the vendor for manual response when assessing. It can still be explicitly selected for manual response by passing its id in the `questionnaires` field on the Start Assessment endpoint."
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ArtifactUpdateSettings": {
+        "type": "null",
+        "properties": {
+          "artifactUpdateType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTOMATIC",
+              "NONE"
+            ]
+          }
+        },
+        "required": [
+          "artifactUpdateType"
+        ]
+      },
+      "LifecycleManagementUpdateRequest": {
+        "type": "null",
+        "properties": {
+          "artifactUpdateSettings": {
+            "$ref": "#/components/schemas/ArtifactUpdateSettings"
+          },
+          "recertificationSettings": {
+            "$ref": "#/components/schemas/RecertificationSettings"
+          }
+        }
+      },
+      "RecertificationSettings": {
+        "type": "null",
+        "properties": {
+          "recertificationType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTOMATIC",
+              "NONE"
+            ]
+          },
+          "recertificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reviewFrequency": {
+            "type": "string",
+            "enum": [
+              "THREE_YEARS",
+              "TWO_YEARS",
+              "ANNUAL",
+              "SEMIANNUAL",
+              "QUARTERLY"
+            ]
+          }
+        },
+        "required": [
+          "recertificationDate",
+          "recertificationType",
+          "reviewFrequency"
+        ]
+      },
+      "RelationshipOnboardRequest": {
+        "type": "object",
+        "properties": {
+          "approvalSummary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "lifecycleManagementUpdateRequest": {
+            "$ref": "#/components/schemas/LifecycleManagementUpdateRequest"
+          }
+        }
+      },
+      "UpdateAssessmentFollowupInput": {
+        "type": "object",
+        "properties": {
+          "followupType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTOMATIC",
+              "CONCIERGE"
+            ]
+          },
+          "followupRiskThreshold": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "NO_CONTEXT",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "EXTREME"
+            ]
+          },
+          "followupTimeline": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "SEVEN_DAYS",
+              "FOURTEEN_DAYS",
+              "THIRTY_DAYS",
+              "SIXTY_DAYS",
+              "NINETY_DAYS"
+            ]
+          }
+        },
+        "required": [
+          "followupType"
+        ]
+      },
+      "UpdateAssessmentExpirationInput": {
+        "type": "object",
+        "properties": {
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "expirationDate"
+        ]
+      },
+      "UserCreateRequest": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "businessUnit": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ]
+          }
+        }
+      },
+      "TagsCreateInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "tags"
+        ]
+      },
+      "ExternalAssessment": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "reviewFrequency": {
+            "type": "string",
+            "enum": [
+              "THREE_YEARS",
+              "TWO_YEARS",
+              "ANNUAL",
+              "SEMIANNUAL",
+              "QUARTERLY"
+            ]
+          },
+          "recertificationType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTOMATIC",
+              "NONE"
+            ]
+          },
+          "assessmentCompletionDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "assessmentStartDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "automaticArtifactUpdates": {
+            "type": "boolean"
+          },
+          "inherentRiskLevel": {
+            "type": "string",
+            "enum": [
+              "NO_CONTEXT",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "EXTREME"
+            ]
+          },
+          "residualRiskLevel": {
+            "type": "string",
+            "enum": [
+              "NO_CONTEXT",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "EXTREME"
+            ]
+          }
+        },
+        "required": [
+          "assessmentCompletionDate",
+          "assessmentStartDate",
+          "automaticArtifactUpdates",
+          "inherentRiskLevel",
+          "recertificationType",
+          "residualRiskLevel",
+          "reviewFrequency"
+        ]
+      },
+      "RelationshipCreateInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "homepage": {
+            "type": "string",
+            "pattern": "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|(?!(.*www\\.){1})[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})|"
+          },
+          "description": {
+            "type": "string"
+          },
+          "contextTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextType"
+            }
+          },
+          "dataTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataType"
+            }
+          },
+          "businessOwnerFirstName": {
+            "type": "string"
+          },
+          "businessOwnerLastName": {
+            "type": "string"
+          },
+          "businessOwnerEmail": {
+            "type": "string"
+          },
+          "assessmentLeadFirstName": {
+            "type": "string"
+          },
+          "assessmentLeadLastName": {
+            "type": "string"
+          },
+          "assessmentLeadEmail": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 0
+          },
+          "tier": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 5,
+            "minimum": 1
+          },
+          "thirdPartyContact": {
+            "$ref": "#/components/schemas/ThirdPartyContact"
+          },
+          "externalAssessment": {
+            "$ref": "#/components/schemas/ExternalAssessment"
+          },
+          "instantAnalysis": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ThirdPartyContact": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName"
+        ]
+      },
+      "RelationshipSearchInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "domains",
+          "name"
+        ]
+      },
+      "CreateRelationshipByDomainRequest": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "vendorName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "product": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "instantAnalysis": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "domain",
+          "vendorName"
+        ]
+      },
+      "SecurityScorecardReportCreateInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "vendorDomain": {
+            "type": "string"
+          },
+          "reportDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "link": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "grade": {
+            "type": "string"
+          },
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          }
+        },
+        "required": [
+          "grade"
+        ]
+      },
+      "ExternalIntelligenceReportClientView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "clientOrgId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "clientOrgName": {
+            "type": "string"
+          },
+          "vendorOrgId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vendorOrgName": {
+            "type": "string"
+          },
+          "vendorOrgDescription": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "vendorOrgFaviconUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "SECURITY_SCORECARD",
+              "BITSIGHT",
+              "RECORDED_FUTURE"
+            ]
+          },
+          "reportDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "link": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rating": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "typeName": {
+            "type": "string"
+          },
+          "guid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "customId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "primaryDomain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ratingRange": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ratingColor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ratingValue": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "grade": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "triggeredRuleCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "maxRuleCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "firstSeen": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "lastSeen": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "criticalityLabel": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "BulkExternalIntelligenceReportResponse": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "uniqueItems": true
+          },
+          "backgroundedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "backgrounded": {
+            "type": "boolean"
+          },
+          "totalFailureCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RecordedFutureReportCreateInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "vendorDomain": {
+            "type": "string"
+          },
+          "reportDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "link": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "entityType": {
+            "type": "string"
+          },
+          "entity": {
+            "type": "string"
+          },
+          "riskScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "riskLevel": {
+            "type": "string"
+          },
+          "firstSeen": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "lastSeen": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "triggeredRuleCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "maxRuleCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "criticalityLabel": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "entity",
+          "entityType",
+          "riskLevel",
+          "riskScore"
+        ]
+      },
+      "BitsightReportCreateInput": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "vendorDomain": {
+            "type": "string"
+          },
+          "reportDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "link": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "guid": {
+            "type": "string"
+          },
+          "customId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "primaryDomain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ratingRange": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ratingColor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rating": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          }
+        },
+        "required": [
+          "guid"
+        ]
+      },
+      "VisoAgentClientChatRequest": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "VisoAgentClientApiChatResponse": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "reply": {
+            "type": "string"
+          }
+        }
+      },
+      "AuditLogFilterRequest": {
+        "type": "object",
+        "default": null,
+        "description": "Request for filtering audit log events by specific types",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "default": "",
+            "description": "Start date for the audit log query"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "default": "",
+            "description": "End date for the audit log query"
+          },
+          "eventTypes": {
+            "type": "array",
+            "contains": {
+              "default": ""
+            },
+            "description": "Set of specific event types to retrieve. If null or empty, returns all event types.\nAllowed values (by category):\nUSER_: USER_LOGGED_IN, USER_LOGGED_OUT, EXISTING_USER_FIRST_LOG_IN, NEW_USER_FIRST_LOG_IN, USER_UPLOADED_ARTIFACT, USER_DOWNLOADED_ARTIFACT, USER_EXPORTED_ARTIFACT, USER_CREATED, USER_UPDATED, USER_SUBSCRIBED, USER_UNSUBSCRIBED, USER_DEFAULT_SUBSCRIBER_ADDED, USER_DEFAULT_SUBSCRIBER_REMOVED\nORG_: ORG_CREATED, ORG_UPDATED, ORG_FIRST_LOGIN, ORG_OFFBOARD_IN_PROGRESS, ORG_OFFBOARD_SUCCESS, ORG_OFFBOARD_FAILED, ORG_SUBDOMAIN_SET, ORG_ASSESSMENT_DEFAULTS_CREATED, ORG_ASSESSMENT_DEFAULTS_UPDATED\nASSESSMENT_: ASSESSMENT_CREATED, ASSESSMENT_UPDATED, ASSESSMENT_COMPLETED, ASSESSMENT_CANCELLED, ASSESSMENT_CANCELLED_BY_VENDOR, ASSESSMENT_CANCELLED_BY_CLIENT, ASSESSMENT_CANCELLED_BY_AUDITOR, ASSESSMENT_CANCELLED_BY_ADMIN, ASSESSMENT_AUTOMATICALLY_CANCELLED, ASSESSMENT_EXPIRED, ASSESSMENT_AUDIT_COMPLETED, ASSESSMENT_STATUS_CHANGED\nRELATIONSHIP_: RELATIONSHIP_CREATED, RELATIONSHIP_ARCHIVED, RELATIONSHIP_ONBOARDED, RELATIONSHIP_UPDATED, RISK_ACCEPTED, RISK_ACCEPTANCE_REVOKED, PRIMARY_CONTACT_CHANGED",
+            "items": {
+              "type": "string",
+              "default": "",
+              "enum": [
+                "USER_LOGGED_IN",
+                "USER_LOGGED_OUT",
+                "EXISTING_USER_FIRST_LOG_IN",
+                "NEW_USER_FIRST_LOG_IN",
+                "USER_UPLOADED_ARTIFACT",
+                "USER_DOWNLOADED_ARTIFACT",
+                "USER_EXPORTED_ARTIFACT",
+                "USER_CREATED",
+                "USER_UPDATED",
+                "USER_SUBSCRIBED",
+                "USER_UNSUBSCRIBED",
+                "USER_DEFAULT_SUBSCRIBER_ADDED",
+                "USER_DEFAULT_SUBSCRIBER_REMOVED",
+                "ORG_CREATED",
+                "ORG_UPDATED",
+                "ORG_FIRST_LOGIN",
+                "ORG_OFFBOARD_IN_PROGRESS",
+                "ORG_OFFBOARD_SUCCESS",
+                "ORG_OFFBOARD_FAILED",
+                "ORG_SUBDOMAIN_SET",
+                "ORG_ASSESSMENT_DEFAULTS_CREATED",
+                "ORG_ASSESSMENT_DEFAULTS_UPDATED",
+                "ASSESSMENT_CREATED",
+                "ASSESSMENT_UPDATED",
+                "ASSESSMENT_COMPLETED",
+                "ASSESSMENT_CANCELLED",
+                "ASSESSMENT_EXPIRED",
+                "ASSESSMENT_AUDIT_COMPLETED",
+                "ASSESSMENT_STATUS_CHANGED",
+                "RELATIONSHIP_CREATED",
+                "RELATIONSHIP_ARCHIVED",
+                "RELATIONSHIP_ONBOARDED",
+                "RELATIONSHIP_UPDATED",
+                "RISK_ACCEPTED",
+                "RISK_ACCEPTANCE_REVOKED",
+                "PRIMARY_CONTACT_CHANGED"
+              ]
+            },
+            "unevaluatedItems": {
+              "default": ""
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "end",
+          "start"
+        ]
+      },
+      "UserAuditEvent": {
+        "type": "object",
+        "properties": {
+          "auditEventType": {
+            "type": "string",
+            "enum": [
+              "USER_LOGGED_OUT",
+              "USER_CREATED",
+              "USER_UPDATED",
+              "USER_FIRST_LOG_IN",
+              "EXISTING_USER_FIRST_LOG_IN",
+              "NEW_USER_FIRST_LOG_IN",
+              "USER_LOGGED_IN",
+              "USER_DEFAULT_SUBSCRIBER_ADDED",
+              "USER_DEFAULT_SUBSCRIBER_REMOVED",
+              "USER_SUBSCRIBED",
+              "USER_UNSUBSCRIBED",
+              "USER_UPLOADED_ARTIFACT",
+              "USER_DOWNLOADED_ARTIFACT",
+              "USER_EXPORTED_ARTIFACT"
+            ]
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "AuditEvent": {
+        "type": "object",
+        "properties": {
+          "auditEventType": {
+            "$ref": "#/components/schemas/AuditEventType"
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AuditEventType": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "AggregateControlDomainSummary": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "highestRiskLevel": {
+            "type": "string"
+          },
+          "affectedRelationships": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "ControlDomainSummary": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "riskLevel": {
+            "type": "string"
+          }
+        }
+      },
+      "RelationshipEntry": {
+        "type": "object",
+        "properties": {
+          "relationshipId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productServiceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productServiceName": {
+            "type": "string"
+          },
+          "assessmentStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_ASSESSED",
+              "AWAITING_REMEDIATION",
+              "STARTED",
+              "REVIEW_STARTED",
+              "AUDIT_COMPLETED",
+              "COMPLETED",
+              "CANCELLED",
+              "DELETED",
+              "COLLECTING_INFORMATION"
+            ]
+          },
+          "riskLevel": {
+            "type": "string"
+          },
+          "riskScore": {
+            "type": "number",
+            "format": "float"
+          },
+          "lastAssessedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "controlDomainSummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ControlDomainSummary"
+            }
+          }
+        }
+      },
+      "VendorRiskSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "vendorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vendorName": {
+            "type": "string"
+          },
+          "evaluatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "overallRiskLevel": {
+            "type": "string"
+          },
+          "overallRiskScore": {
+            "type": "number",
+            "format": "float"
+          },
+          "relationshipCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "relationships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelationshipEntry"
+            }
+          },
+          "aggregateControlDomainSummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AggregateControlDomainSummary"
+            }
+          },
+          "summaryText": {
+            "type": "string"
+          },
+          "emptySummaryReason": {
+            "type": "string"
+          },
+          "summaryGeneratedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "StreamingResponseBody": {},
+      "QuestionnaireView": {
+        "type": "object",
+        "default": null,
+        "description": "A questionnaire available to your organization",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, the questionnaire is enabled at the organization level and applied by default to relationships that have not configured their own questionnaire list."
+          },
+          "aiOnly": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, the questionnaire is answered by AI by default and is not sent to the vendor for manual response when assessing. It can still be explicitly selected for manual response by passing its id in the `questionnaires` field on the Start Assessment endpoint."
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "VendorDirectoryView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "homepage": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "faviconUrl": {
+            "type": "string"
+          },
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "DataTypeView": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ContextTypeView": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "AssessmentSummaryView": {
+        "type": "object",
+        "default": null,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

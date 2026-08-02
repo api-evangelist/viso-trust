@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/viso-trust-openapi-original.json
+docs: https://docs.visotrust.com/api-reference/authentication
+type: Webhooks
+summary: VISO TRUST publishes an outbound webhook surface managed through the
+  Client API (register/update/list/delete). Consumers register a webhook URL and
+  a set of event types; VISO TRUST POSTs to the URL when those events fire.
+management:
+  register: POST /api/v1/webhooks (registerWebhook)
+  update: PUT /api/v1/webhooks (updateWebhook)
+  list: GET /api/v1/webhooks (getAllWebhooksForClient)
+  get: GET /api/v1/webhooks/{webhookId} (getWebhookByIdForClient)
+  delete: DELETE /api/v1/webhooks/{webhookId} (deleteWebhook)
+service_types:
+- GENERIC
+- SLACK
+- DISCORD
+- TEAMS
+- WORKATO
+event_types:
+- ASSESSMENT_COMPLETED
+- ASSESSMENT_RECERTIFICATION_COMPLETED
+- ASSESSMENT_REMEDIATION_COMPLETED
+- ASSESSMENT_ARTIFACT_UPDATE_COMPLETED
+- DOCS_ONLY_ARTIFACT_UPDATE_COMPLETED
+- ASSESSMENT_REMINDER
+- ASSESSMENT_CANCELLED
+- ASSESSMENT_CANCELLED_BY_AUDITOR
+- ASSESSMENT_AUTOMATICALLY_CANCELLED
+- UPCOMING_RECERTIFICATION
+- RELATIONSHIP_ONBOARDED
+- RISK_ACCEPTED
+- RELATIONSHIP_OVERDUE
+- ARTIFACT_EXPIRING
+- ARTIFACT_EXPIRED
+notes: Event type and service type enumerations are taken verbatim from the
+  WebhookCreateUpdateRequest schema in the published OpenAPI. No AsyncAPI document
+  is published; this is the documented webhook catalog.

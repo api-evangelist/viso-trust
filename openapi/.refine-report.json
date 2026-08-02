@@ -1,0 +1,36 @@
+{
+  "provider": "viso-trust",
+  "sources": [
+    "viso-trust-client-api-assessment-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-audit-log-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-chat-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-context-type-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-data-type-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-external-intelligence-report-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-questionnaire-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-relationship-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-user-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-vendor-directory-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-vendor-risk-summary-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-webhook-rest-resource-api-openapi.yml"
+  ],
+  "outputs": [
+    "viso-trust-client-api-assessment-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-audit-log-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-chat-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-context-type-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-data-type-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-external-intelligence-report-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-questionnaire-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-relationship-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-user-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-vendor-directory-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-vendor-risk-summary-rest-resource-api-openapi.yml",
+    "viso-trust-client-api-webhook-rest-resource-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

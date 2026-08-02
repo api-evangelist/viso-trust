@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for VISO TRUST Client API
+  version: 1.0.0
+extends: openapi/viso-trust-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: viso-trust
+    x-apievangelist-category: third-party-risk-management
+    x-apievangelist-auth: http-bearer
+    x-apievangelist-webhooks: true
+    x-apievangelist-pagination: page-number
+- target: $.info
+  update:
+    description: >-
+      VISO TRUST Client API (v1). AI-powered third-party risk management:
+      manage vendor relationships, run and export risk assessments, pull
+      external intelligence reports (SecurityScorecard, Recorded Future,
+      BitSight), query vendor risk summaries, manage questionnaires and users,
+      and register outbound webhooks. Authenticate with a bearer API token
+      generated from the Dashboard (Admin or Program Manager).

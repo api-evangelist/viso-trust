@@ -1,0 +1,103 @@
+# VISO TRUST
+
+## Docs
+
+- [Authentication](https://docs.visotrust.com/api-reference/authentication.md): Authenticate requests to the VISO TRUST API with a bearer token generated from your user profile, including header format and base URL.
+- [Download artifacts for an assessment as a zip](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/download-artifacts-for-an-assessment-as-a-zip.md)
+- [Export the LLM assessment summary as a PDF](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/export-the-llm-assessment-summary-as-a-pdf.md)
+- [Get an assessment](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/get-an-assessment.md)
+- [Get the summary for an assessment](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/get-the-summary-for-an-assessment.md)
+- [Start an Assessment](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/start-an-assessment.md)
+- [Update the expiration date of an in-progress assessment](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/update-the-expiration-date-of-an-in-progress-assessment.md)
+- [Update the follow-up settings of an in-progress assessment](https://docs.visotrust.com/api-reference/client-api-assessment-rest-resource/update-the-follow-up-settings-of-an-in-progress-assessment.md)
+- [Get all user audit log events for your organization in the time frame, limited to 500 records](https://docs.visotrust.com/api-reference/client-api-audit-log-rest-resource/get-all-user-audit-log-events-for-your-organization-in-the-time-frame-limited-to-500-records.md)
+- [Get filtered audit log events based on specific types and categories for your organization, limited to 500 records](https://docs.visotrust.com/api-reference/client-api-audit-log-rest-resource/get-filtered-audit-log-events-based-on-specific-types-and-categories-for-your-organization-limited-to-500-records.md)
+- [Chat with VISO Agent](https://docs.visotrust.com/api-reference/client-api-chat-rest-resource/chat-with-viso-agent.md)
+- [Get all business cases for your organization.](https://docs.visotrust.com/api-reference/client-api-context-type-rest-resource/get-all-business-cases-for-your-organization.md)
+- [Get all data types for your organization.](https://docs.visotrust.com/api-reference/client-api-data-type-rest-resource/get-all-data-types-for-your-organization.md)
+- [Bulk create BitSight intelligence reports](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/bulk-create-bitsight-intelligence-reports.md)
+- [Bulk create Recorded Future intelligence reports](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/bulk-create-recorded-future-intelligence-reports.md)
+- [Bulk create SecurityScorecard intelligence reports](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/bulk-create-securityscorecard-intelligence-reports.md)
+- [Create a new BitSight intelligence report](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/create-a-new-bitsight-intelligence-report.md)
+- [Create a new Recorded Future intelligence report](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/create-a-new-recorded-future-intelligence-report.md)
+- [Create a new SecurityScorecard intelligence report](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/create-a-new-securityscorecard-intelligence-report.md)
+- [Get all intelligence reports for a specific vendor](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/get-all-intelligence-reports-for-a-specific-vendor.md)
+- [Get the latest intelligence report for a vendor from a specific source](https://docs.visotrust.com/api-reference/client-api-external-intelligence-report-rest-resource/get-the-latest-intelligence-report-for-a-vendor-from-a-specific-source.md)
+- [Get all questionnaires available for a relationship.](https://docs.visotrust.com/api-reference/client-api-questionnaire-rest-resource/get-all-questionnaires-available-for-a-relationship.md): Returns every active organization-level questionnaire alongside its effective enabled state for the given relationship. A questionnaire is enabled for the relationship when it has been explicitly enabled via `PUT /relationships/{id}/questionnaires`, or when no relationship-level configuration exists…
+- [Get all questionnaires available to your organization.](https://docs.visotrust.com/api-reference/client-api-questionnaire-rest-resource/get-all-questionnaires-available-to-your-organization.md): Returns the active questionnaires configured for your organization. Use `GET /relationships/{id}/questionnaires` to see which questionnaires are enabled for a particular relationship, and `PUT /relationships/{id}/questionnaires` to enable or disable them per relationship before passing their ids to…
+- [Update which questionnaires are enabled for a relationship.](https://docs.visotrust.com/api-reference/client-api-questionnaire-rest-resource/update-which-questionnaires-are-enabled-for-a-relationship.md): Replaces the relationship's enabled-questionnaire list with the provided ids. Any active organization questionnaire not included in `enabledQuestionnaireIds` is disabled for the relationship.
+- [Archive a relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/archive-a-relationship.md)
+- [Create a Relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/create-a-relationship.md)
+- [Create a Relationship by domain](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/create-a-relationship-by-domain.md)
+- [Create tags](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/create-tags.md)
+- [Download active artifacts for a relationship as a zip](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/download-active-artifacts-for-a-relationship-as-a-zip.md)
+- [Get a list of all relationships and their assessment details](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/get-a-list-of-all-relationships-and-their-assessment-details.md)
+- [Get a relationship and its assessment details](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/get-a-relationship-and-its-assessment-details.md)
+- [Get assessment history for a relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/get-assessment-history-for-a-relationship.md)
+- [Mark a relationship as not onboarded](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/mark-a-relationship-as-not-onboarded.md)
+- [Onboard a relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/onboard-a-relationship.md)
+- [Partially update a relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/partially-update-a-relationship.md)
+- [Search for relationships by domain/name (deprecated)](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/search-for-relationships-by-domainname-deprecated.md)
+- [Search for relationships by filter criteria](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/search-for-relationships-by-filter-criteria.md)
+- [Update a relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/update-a-relationship.md)
+- [Update third party contact details for a relationship](https://docs.visotrust.com/api-reference/client-api-relationship-rest-resource/update-third-party-contact-details-for-a-relationship.md)
+- [Get all users in your organization](https://docs.visotrust.com/api-reference/client-api-user-rest-resource/get-all-users-in-your-organization.md)
+- [Get user by email](https://docs.visotrust.com/api-reference/client-api-user-rest-resource/get-user-by-email.md)
+- [Post apiv1users](https://docs.visotrust.com/api-reference/client-api-user-rest-resource/post-apiv1users.md)
+- [Get apiv1directorysearch](https://docs.visotrust.com/api-reference/client-api-vendor-directory-rest-resource/get-apiv1directorysearch.md)
+- [Get vendor risk summary by vendor ID](https://docs.visotrust.com/api-reference/client-api-vendor-risk-summary-rest-resource/get-vendor-risk-summary-by-vendor-id.md)
+- [Get vendor risk summary by vendor name or domain](https://docs.visotrust.com/api-reference/client-api-vendor-risk-summary-rest-resource/get-vendor-risk-summary-by-vendor-name-or-domain.md)
+- [Get all webhooks for your organization](https://docs.visotrust.com/api-reference/client-api-webhook-rest-resource/get-all-webhooks-for-your-organization.md)
+- [Get webhook by id for your organization](https://docs.visotrust.com/api-reference/client-api-webhook-rest-resource/get-webhook-by-id-for-your-organization.md)
+- [Register a webhook](https://docs.visotrust.com/api-reference/client-api-webhook-rest-resource/register-a-webhook.md)
+- [Un-register a webhook](https://docs.visotrust.com/api-reference/client-api-webhook-rest-resource/un-register-a-webhook.md)
+- [Update a webhook configuration](https://docs.visotrust.com/api-reference/client-api-webhook-rest-resource/update-a-webhook-configuration.md)
+- [Inviting Your Team](https://docs.visotrust.com/getting-started/inviting-your-team.md): Invite users to VISO TRUST, assign Admin, Program Manager, Contributor, or Viewer roles, designate business owners, and set default notification routing.
+- [Key Concepts](https://docs.visotrust.com/getting-started/key-concepts.md): Learn the core VISO TRUST concepts: relationships, assessments, artifacts, risk scoring, business cases, and the AI that powers the platform.
+- [Navigating the Platform](https://docs.visotrust.com/getting-started/navigating-the-platform.md): A tour of the VISO TRUST interface: the relationships list, vendor directory, assessments view, risk advisories, insights dashboards, and settings.
+- [Quick Start Guide](https://docs.visotrust.com/getting-started/quick-start.md): A 30-day setup plan for new VISO TRUST customers: configure your org, invite your team, add vendors, run assessments, and turn on monitoring.
+- [Role-Based Access](https://docs.visotrust.com/getting-started/roles-and-permissions.md): Compare the Admin, Program Manager, Contributor, and Viewer roles in VISO TRUST, plus the Business Owner and Assessment Lead relationship designations.
+- [What is VISO TRUST?](https://docs.visotrust.com/getting-started/what-is-viso-trust.md): VISO TRUST is an AI-powered TPRM platform that automates vendor due diligence, document analysis, risk scoring, and continuous monitoring.
+- [Native integrations: Slack, Coupa, Netskope, ServiceNow](https://docs.visotrust.com/integrations/available-integrations.md): Native VISO TRUST integrations including Slack, Coupa, Netskope, and ServiceNow — how each connector works and how to configure it for your org.
+- [How VISO TRUST integrations work](https://docs.visotrust.com/integrations/overview.md): How VISO TRUST connects to your existing tools through event-driven native integrations, webhooks, and the REST API for automated TPRM workflows.
+- [Webhooks: real-time event delivery to HTTP endpoints](https://docs.visotrust.com/integrations/webhooks.md): Push VISO TRUST events to any HTTP endpoint in real time — assessment completions, recertifications, and relationship lifecycle events for your systems.
+- [Organization Profile](https://docs.visotrust.com/organization-settings/organization-profile.md): Configure your VISO TRUST organization profile: display name, logo and branding, contact information, and the settings vendors see in collection requests.
+- [SSO / SAML Configuration](https://docs.visotrust.com/organization-settings/sso.md): Set up SAML 2.0 single sign-on for VISO TRUST with Okta, Azure AD, Entra ID, or any compliant identity provider — including IdP setup and metadata exchange.
+- [Tags](https://docs.visotrust.com/organization-settings/tags.md): Create custom tags in VISO TRUST to label vendor relationships, then filter the portfolio, scope Risk Insights dashboards, and drive bulk actions.
+- [User Management](https://docs.visotrust.com/organization-settings/user-management.md): Invite users to VISO TRUST, change their roles, configure default notification subscribers, and create service accounts for API access.
+- [Release Notes](https://docs.visotrust.com/resources/changelog.md): Release notes for the VISO TRUST platform: new features, enhancements, bug fixes, and behavior changes shipped in each version of the product.
+- [Troubleshooting & FAQ](https://docs.visotrust.com/resources/faq.md): Troubleshooting steps and frequently asked questions about login, assessments, artifact uploads, notifications, and other common VISO TRUST issues.
+- [Glossary](https://docs.visotrust.com/resources/glossary.md): Definitions of key VISO TRUST terms — including artifacts, assessments, business cases, control domains, residual risk, and Artifact Intelligence.
+- [Security & Privacy](https://docs.visotrust.com/resources/security-and-privacy.md): How VISO TRUST protects customer and vendor data: what's collected, where it's stored, encryption, access controls, and compliance certifications.
+- [Control Domains & Artifact Types](https://docs.visotrust.com/risk-and-monitoring/control-domains.md): How control domains define the security categories assessed in VISO TRUST, and how artifact types like SOC 2 and ISO 27001 reports map evidence to controls.
+- [Notifications & Alerts](https://docs.visotrust.com/risk-and-monitoring/notifications.md): Route VISO TRUST notifications to the right people: configure organization contacts, default subscribers, and per-event delivery for alerts and advisories.
+- [Risk Advisories](https://docs.visotrust.com/risk-and-monitoring/risk-advisories.md): Risk Advisories surface vendor breaches, vulnerabilities, regulatory actions, and other material events automatically so you can respond the day they happen.
+- [Risk Insights](https://docs.visotrust.com/risk-and-monitoring/risk-insights.md): Risk Insights provides portfolio-level VISO TRUST dashboards built on Metabase, giving program managers a complete view of third-party risk exposure.
+- [Your Risk Model](https://docs.visotrust.com/risk-and-monitoring/risk-model.md): Tune VISO TRUST's risk model: adjust risk tolerance, customize score-to-label thresholds, and rename risk labels to match your TPRM program.
+- [Risk Scoring Overview](https://docs.visotrust.com/risk-and-monitoring/risk-scoring.md): How VISO TRUST calculates inherent and residual risk for every vendor, combining business case exposure, data sensitivity, and control assurance.
+- [Artifact Type Configuration](https://docs.visotrust.com/third-parties/advanced/artifact-type-configuration.md): How VISO TRUST artifact types classify security documents like SOC 2 and ISO 27001 reports, and how that classification drives which controls they validate.
+- [Assessment Settings](https://docs.visotrust.com/third-parties/advanced/assessment-settings.md): Set default assessment behavior in VISO TRUST at the organization, business unit, and relationship level for consistent and predictable automation.
+- [Your Framework](https://docs.visotrust.com/third-parties/advanced/custom-frameworks.md): Customize your VISO TRUST risk framework — intake questions, data classification, and risk calculations that determine assessment scope and scoring.
+- [Data Types](https://docs.visotrust.com/third-parties/advanced/data-types.md): How data types describe what information is shared with a vendor and drive the impact component of VISO TRUST's inherent risk score calculation.
+- [Assessments](https://docs.visotrust.com/third-parties/assessments.md): Create, track, and review vendor risk assessments in VISO TRUST — from instant assessments to artifact uploads and vendor collection requests.
+- [Bulk Import](https://docs.visotrust.com/third-parties/bulk-import.md): Use CSV bulk import in VISO TRUST to add many vendor relationships at once, with templates for new relationships or migrating existing assessment data.
+- [Business Units](https://docs.visotrust.com/third-parties/business-units.md): Group vendor relationships by business unit in VISO TRUST to scope Risk Insights dashboards, clarify ownership, and filter views across large portfolios.
+- [Relationships](https://docs.visotrust.com/third-parties/relationships.md): Add, edit, tag, and offboard third-party vendor relationships in VISO TRUST — the central record that anchors every assessment, score, and advisory.
+- [Vendor Directory](https://docs.visotrust.com/third-parties/vendor-directory.md): Browse and search the VISO TRUST vendor directory — a catalog of pre-populated third-party profiles that speed up instant assessments and onboarding.
+- [Vendor Discovery](https://docs.visotrust.com/third-parties/vendor-discovery.md): Vendor Discovery uses AI to extract sub-processors and subservicers from your Trust Profile artifacts so you can find and onboard vendors you aren't tracking.
+- [Artifact Intelligence](https://docs.visotrust.com/trust-and-questionnaires/artifact-intelligence.md): Artifact Intelligence is VISO TRUST's AI engine that reads SOC 2, ISO 27001, and other security documents to extract control evidence and set assurance.
+- [Attestations](https://docs.visotrust.com/trust-and-questionnaires/attestations.md): How VISO TRUST captures vendor attestations — formal declarations that controls are in place — including submission certifications and the audit trail.
+- [Answering Questionnaires](https://docs.visotrust.com/trust-and-questionnaires/questionnaire-answering.md): How VISO TRUST questionnaires get answered — automatically by Artifact Intelligence using existing documents, or by vendors in the collection portal.
+- [Questionnaires](https://docs.visotrust.com/trust-and-questionnaires/questionnaires.md): Build, configure, and send questionnaires in VISO TRUST to collect structured written responses from vendors as part of a security assessment.
+- [Trust Profiles](https://docs.visotrust.com/trust-and-questionnaires/trust-profiles.md): Manage your Trust Profile in VISO TRUST — the repository of your security documents used to auto-answer inbound questionnaires and power Vendor Discovery.
+- [VISO Chat Agent Overview](https://docs.visotrust.com/viso-chat/overview.md): VISO Chat Agent is the AI assistant in VISO TRUST — ask natural-language questions to surface vendor data, assessment findings, and program insights.
+- [Tips for Better Answers](https://docs.visotrust.com/viso-chat/tips.md): Tips for better VISO Chat Agent prompts — be specific, scope your question, and reference vendors or assessments directly for more accurate answers.
+- [What You Can Ask](https://docs.visotrust.com/viso-chat/what-you-can-ask.md): Example VISO Chat Agent queries for portfolio insights, vendor lookups, assessment status, advisory triage, and other third-party risk program tasks.
+
+## OpenAPI Specs
+
+- [api-docs](https://app.visotrust.com/v1/api-docs)
+
+## Optional
+
+- [Help Center](https://support.visotrust.com)

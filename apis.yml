@@ -1,22 +1,227 @@
 aid: viso-trust
 name: VISO Trust
-description: 'VISO Trust is a company surfaced as a portfolio company of sierra-ventures and added to
-  the API Evangelist network as a stub for enrichment. Sector: security. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: VISO TRUST is an AI-powered third-party risk management (TPRM) platform that helps security
+  teams assess and continuously monitor vendor risk across third, fourth, and nth parties. Its Artifact
+  Intelligence AI engine reads vendor security documentation to automate assessments, and the platform
+  covers vendor onboarding, questionnaires, external intelligence reports (SecurityScorecard, Recorded
+  Future, BitSight), risk scoring, audit logging, and a VISO Chat agent. The public Client API (v1) exposes
+  relationships, assessments, vendor risk summaries, questionnaires, users, and webhooks over HTTPS with
+  bearer-token auth.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://visotrust.com/wp-content/uploads/2026/03/Viso-trust.png
 url: https://raw.githubusercontent.com/api-evangelist/viso-trust/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - sierra-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: company
+x-tier-reason: enriched-from-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Security
-apis: []
+- Third Party Risk Management
+- TPRM
+- Vendor Risk
+- Risk Management
+- Compliance
+- Cybersecurity
+- Artificial Intelligence
+apis:
+- aid: viso-trust:viso-trust-client-api-assessment-rest-resource-api
+  name: VISO Trust client-api-assessment-rest-resource API
+  description: >-
+    The client-api-assessment-rest-resource API from VISO Trust — 7 operation(s) for client-api-assessment-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-assessment-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-assessment-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-audit-log-rest-resource-api
+  name: VISO Trust client-api-audit-log-rest-resource API
+  description: >-
+    The client-api-audit-log-rest-resource API from VISO Trust — 2 operation(s) for client-api-audit-log-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-audit-log-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-audit-log-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-chat-rest-resource-api
+  name: VISO Trust client-api-chat-rest-resource API
+  description: >-
+    The client-api-chat-rest-resource API from VISO Trust — 1 operation(s) for client-api-chat-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-chat-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-chat-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-context-type-rest-resource-api
+  name: VISO Trust client-api-context-type-rest-resource API
+  description: >-
+    The client-api-context-type-rest-resource API from VISO Trust — 1 operation(s) for client-api-context-type-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-context-type-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-context-type-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-data-type-rest-resource-api
+  name: VISO Trust client-api-data-type-rest-resource API
+  description: >-
+    The client-api-data-type-rest-resource API from VISO Trust — 1 operation(s) for client-api-data-type-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-data-type-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-data-type-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-external-intelligence-report-rest-resource-api
+  name: VISO Trust client-api-external-intelligence-report-rest-resource API
+  description: >-
+    The client-api-external-intelligence-report-rest-resource API from VISO Trust — 8 operation(s) for
+    client-api-external-intelligence-report-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-external-intelligence-report-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-external-intelligence-report-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-questionnaire-rest-resource-api
+  name: VISO Trust client-api-questionnaire-rest-resource API
+  description: >-
+    The client-api-questionnaire-rest-resource API from VISO Trust — 2 operation(s) for client-api-questionnaire-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-questionnaire-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-questionnaire-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-relationship-rest-resource-api
+  name: VISO Trust client-api-relationship-rest-resource API
+  description: >-
+    The client-api-relationship-rest-resource API from VISO Trust — 11 operation(s) for client-api-relationship-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-relationship-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-relationship-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-user-rest-resource-api
+  name: VISO Trust client-api-user-rest-resource API
+  description: >-
+    The client-api-user-rest-resource API from VISO Trust — 2 operation(s) for client-api-user-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-user-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-user-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-vendor-directory-rest-resource-api
+  name: VISO Trust client-api-vendor-directory-rest-resource API
+  description: >-
+    The client-api-vendor-directory-rest-resource API from VISO Trust — 1 operation(s) for client-api-vendor-directory-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-vendor-directory-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-vendor-directory-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-vendor-risk-summary-rest-resource-api
+  name: VISO Trust client-api-vendor-risk-summary-rest-resource API
+  description: >-
+    The client-api-vendor-risk-summary-rest-resource API from VISO Trust — 2 operation(s) for client-api-vendor-risk-summary-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-vendor-risk-summary-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-vendor-risk-summary-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
+- aid: viso-trust:viso-trust-client-api-webhook-rest-resource-api
+  name: VISO Trust client-api-webhook-rest-resource API
+  description: >-
+    The client-api-webhook-rest-resource API from VISO Trust — 2 operation(s) for client-api-webhook-rest-resource.
+  humanURL: https://docs.visotrust.com/api-reference/authentication
+  baseURL: https://app.visotrust.com/api/v1
+  tags:
+  - client-api-webhook-rest-resource
+  properties:
+  - type: OpenAPI
+    url: openapi/viso-trust-client-api-webhook-rest-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.visotrust.com/
+  - type: APIReference
+    url: https://docs.visotrust.com/api-reference/authentication
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +230,60 @@ maintainers:
 common:
 - type: Website
   url: https://visotrust.com/
+- type: DeveloperPortal
+  url: https://docs.visotrust.com/
+- type: Documentation
+  url: https://docs.visotrust.com/
+- type: APIReference
+  url: https://docs.visotrust.com/api-reference/authentication
+- type: Quickstart
+  url: https://docs.visotrust.com/quickstart
+- type: Support
+  url: https://support.visotrust.com/
+- type: Blog
+  url: https://visotrust.com/resource-types/blog/
+- type: GitHubOrganization
+  url: https://github.com/visotrust
+- type: Integrations
+  url: https://visotrust.com/platform/integrations/
+- type: Login
+  url: https://app.visotrust.com/
+- type: TermsOfService
+  url: https://visotrust.com/softwarelicenseagreement/
+- type: PrivacyPolicy
+  url: https://visotrust.com/privacy-policy/
+- type: StatusPage
+  url: https://status.visotrust.com/
+- type: ChangeLog
+  url: changelog/viso-trust-changelog.yml
+- type: Compliance
+  url: https://visotrust.com/security/
+- type: Security
+  url: https://visotrust.com/security/
+- type: Authentication
+  url: authentication/viso-trust-authentication.yml
+- type: DomainSecurity
+  url: security/viso-trust-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/viso-trust-vulnerability-disclosure.yml
+- type: Conventions
+  url: conventions/viso-trust-conventions.yml
+- type: DataModel
+  url: data-model/viso-trust-data-model.yml
+- type: Conformance
+  url: conformance/viso-trust-conformance.yml
+- type: Lifecycle
+  url: lifecycle/viso-trust-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/viso-trust-webhooks.yml
+- type: MCPServer
+  url: mcp/viso-trust-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/viso-trust-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

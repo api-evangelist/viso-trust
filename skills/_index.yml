@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/viso-trust-openapi-original.json
+skills:
+- file: viso-trust-onboard-vendor-and-assess.md
+  name: Onboard a vendor and run a risk assessment
+  api: openapi/viso-trust-openapi-original.json
+  operations: [createRelationshipAsCurrentUserByDomain, onboardRelationship, createAssessment, getAssessment, getAssessmentSummary, exportSummaryPdf]
+- file: viso-trust-monitor-vendor-risk.md
+  name: Monitor vendor risk with external intelligence
+  api: openapi/viso-trust-openapi-original.json
+  operations: [getVendorRiskSummaryByNameOrDomain, createSecurityScorecardIntelligenceReport, createBitsightIntelligenceReport, getIntelligenceReportsByVendor, getLatestIntelligenceReport]
+- file: viso-trust-register-webhook-for-events.md
+  name: Register a webhook for assessment and relationship events
+  api: openapi/viso-trust-openapi-original.json
+  operations: [registerWebhook, getAllWebhooksForClient, getWebhookByIdForClient, updateWebhook, deleteWebhook]

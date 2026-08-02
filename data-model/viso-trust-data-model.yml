@@ -1,0 +1,91 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viso-trust-openapi-original.json
+summary: Entity-relationship graph derived from the VISO TRUST Client API v1
+  OpenAPI schemas and the resource path structure (relationship -> assessment ->
+  artifacts, plus vendor risk, questionnaires, users, and webhooks).
+entities:
+- name: Relationship
+  description: A tracked engagement between your organization and a third-party
+    vendor; the central object of the TPRM lifecycle.
+  key_operations: [createRelationshipAsCurrentUser, getRelationshipForCurrentUser,
+    onboardRelationship, offboardRelationship, archiveRelationship]
+- name: Assessment
+  description: A security/risk assessment performed against a relationship,
+    producing a summary, recommendation, and downloadable artifacts.
+  key_operations: [createAssessment, getAssessment, getAssessmentSummary,
+    exportSummaryPdf, downloadAssessmentArtifacts]
+- name: Questionnaire
+  description: An organization-level questionnaire that can be enabled per
+    relationship.
+  key_operations: [getAllQuestionnairesForCurrentClient, getQuestionnairesForRelationship,
+    updateQuestionnairesForRelationship]
+- name: Vendor
+  description: A third-party company profile with a rolled-up risk summary and
+    external intelligence reports.
+  key_operations: [getVendorRiskSummaryById, getVendorRiskSummaryByNameOrDomain,
+    getVendorDirectoryByDomainOrUrl]
+- name: ExternalIntelligenceReport
+  description: A third-party intelligence report (SecurityScorecard, Recorded
+    Future, BitSight) associated with a vendor domain.
+  key_operations: [createSecurityScorecardIntelligenceReport, createBitsightIntelligenceReport,
+    createRecordedFutureIntelligenceReport, getIntelligenceReportsByVendor]
+- name: User
+  description: A member of your VISO TRUST organization with a role.
+  key_operations: [getAllUsers, createUser, getUserByEmail]
+- name: Webhook
+  description: An outbound webhook registration binding a URL + service type to a
+    set of event types.
+  key_operations: [registerWebhook, getAllWebhooksForClient, deleteWebhook]
+- name: DataType
+  description: A category of data a vendor may process (used to scope risk).
+  key_operations: [getAllDataTypesForCurrentClient]
+- name: ContextType
+  description: A business case / context of engagement.
+  key_operations: [getAllContextTypes]
+- name: AuditEvent
+  description: An audit-log record of user and system events.
+  key_operations: [getAllAuditLogEventsRest, getFilteredAuditLogEventsRest]
+relationships:
+- from: Assessment
+  to: Relationship
+  type: belongs_to
+  via: relationship id (path /api/v1/relationship/{id}/assessments)
+- from: Relationship
+  to: Assessment
+  type: has_many
+  via: getAssessmentsForRelationship
+- from: Relationship
+  to: Questionnaire
+  type: has_many
+  via: getQuestionnairesForRelationship
+- from: Relationship
+  to: PrimaryContact
+  type: has_one
+  via: PrimaryContact schema
+- from: Relationship
+  to: ThirdPartyContact
+  type: has_one
+  via: updateThirdPartyContact
+- from: Vendor
+  to: VendorRiskSummary
+  type: has_one
+  via: getVendorRiskSummaryById
+- from: Vendor
+  to: ExternalIntelligenceReport
+  type: has_many
+  via: getIntelligenceReportsByVendor (vendorDomain)
+- from: Assessment
+  to: AssessmentRecommendation
+  type: has_one
+  via: AssessmentRecommendation schema
+- from: Assessment
+  to: AssessmentStatusHistory
+  type: has_many
+  via: AssessmentStatusHistory schema
+- from: Webhook
+  to: Assessment
+  type: references
+  via: eventTypes (ASSESSMENT_* events)
+notes: id-prefix/domain conventions are not published in the object reference;
+  relationships are derived from schema $ref usage and the resource path tree.

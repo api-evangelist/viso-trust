@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viso-trust-openapi-original.json
+docs: https://docs.visotrust.com/api-reference/authentication
+summary: Cross-cutting request/response semantics for the VISO TRUST Client API
+  (v1), derived from the published OpenAPI 3.1 and the authentication docs.
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: Bearer <token>
+  notes: API token generated once from the Dashboard user profile by Admin or
+    Program Manager accounts; only such tokens may call /api/v1/* endpoints.
+  ref: authentication/viso-trust-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+pagination:
+  style: page-number
+  params:
+  - name: page
+    in: query
+    description: Zero/one-based page index (Spring-style page parameter).
+  - name: size
+    in: query
+    description: Page size / number of records per page.
+  - name: sort
+    in: query
+    description: Sort expression (field,direction).
+  notes: Audit-log endpoints are explicitly capped at 500 records per response.
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header or idempotency parameter is declared in the
+    OpenAPI or documented. Write operations are not advertised as idempotent-safe.
+error_envelope:
+  documented: false
+  notes: The published OpenAPI documents only 200 responses; no error schema or
+    problem+json envelope is published. Authentication failures return 401.
+rate_limiting:
+  documented: false
+content_types:
+  request: application/json
+  response:
+  - application/json
+  - application/pdf
+  - application/zip
+cross_links:
+  authentication: authentication/viso-trust-authentication.yml
+  webhooks: asyncapi/viso-trust-webhooks.yml
+  lifecycle: lifecycle/viso-trust-lifecycle.yml

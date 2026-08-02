@@ -1,0 +1,14 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/viso-trust-openapi-original.json
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: API token generated from your VISO TRUST user profile. Send it in the `Authorization`
+    header as `Bearer <token>`.
+  sources:
+  - openapi/viso-trust-openapi-original.json
