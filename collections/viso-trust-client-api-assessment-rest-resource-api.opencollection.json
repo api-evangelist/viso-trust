@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-assessment-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update the follow-up settings of an in-progress assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/assessments/:id/followup",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the follow-up settings of an in-progress assessment"
+        },
+        {
+          "info": {
+            "name": "Update the expiration date of an in-progress assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/assessments/:id/expiration-date",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the expiration date of an in-progress assessment"
+        },
+        {
+          "info": {
+            "name": "Start an Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/assessments",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "request",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Start an Assessment"
+        },
+        {
+          "info": {
+            "name": "Get an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/assessments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an assessment"
+        },
+        {
+          "info": {
+            "name": "Get the summary for an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/assessments/:id/summary",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the summary for an assessment"
+        },
+        {
+          "info": {
+            "name": "Export the LLM assessment summary as a PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/assessments/:id/summary/export",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Export the LLM assessment summary as a PDF"
+        },
+        {
+          "info": {
+            "name": "Download artifacts for an assessment as a zip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/assessments/:id/artifacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download artifacts for an assessment as a zip"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

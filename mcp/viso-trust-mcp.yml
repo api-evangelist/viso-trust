@@ -156,3 +156,9 @@ tools:
 - name: downloadAssessmentArtifacts
   description: Download artifacts for an assessment as a zip
   source_operation: openapi/viso-trust-openapi-original.json#downloadAssessmentArtifacts
+deployment:
+  mode: none
+  verified: derived
+  tools: 49
+  checked: '2026-08-12'
+  source: catalog MCP census

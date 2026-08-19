@@ -1,0 +1,267 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-relationship-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-relationship-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update third party contact details for a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/third-party-contact",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update third party contact details for a relationship"
+        },
+        {
+          "info": {
+            "name": "Get a list of all relationships and their assessment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/relationships"
+          },
+          "docs": "Get a list of all relationships and their assessment details"
+        },
+        {
+          "info": {
+            "name": "Create a Relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/relationships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Relationship"
+        },
+        {
+          "info": {
+            "name": "Update a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/relationships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a relationship"
+        },
+        {
+          "info": {
+            "name": "Partially update a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.visotrust.com/api/v1/relationships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a relationship"
+        },
+        {
+          "info": {
+            "name": "Onboard a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id/onboard",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Onboard a relationship"
+        },
+        {
+          "info": {
+            "name": "Mark a relationship as not onboarded",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id/offboard",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mark a relationship as not onboarded"
+        },
+        {
+          "info": {
+            "name": "Archive a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id/archive",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive a relationship"
+        },
+        {
+          "info": {
+            "name": "Create tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create tags"
+        },
+        {
+          "info": {
+            "name": "Search for relationships by domain/name (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/relationships/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for relationships by domain/name (deprecated)"
+        },
+        {
+          "info": {
+            "name": "Search for relationships by domain/name",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/relationships/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for relationships by domain/name"
+        },
+        {
+          "info": {
+            "name": "Create a Relationship by domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/relationships/domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Relationship by domain"
+        },
+        {
+          "info": {
+            "name": "Get a relationship and its assessment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a relationship and its assessment details"
+        },
+        {
+          "info": {
+            "name": "Download active artifacts for a relationship as a zip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id/artifacts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download active artifacts for a relationship as a zip"
+        },
+        {
+          "info": {
+            "name": "Get assessment history for a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/relationship/:id/assessments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get assessment history for a relationship"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

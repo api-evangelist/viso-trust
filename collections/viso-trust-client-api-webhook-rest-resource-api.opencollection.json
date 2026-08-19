@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-webhook-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-webhook-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all webhooks for your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/webhooks"
+          },
+          "docs": "Get all webhooks for your organization"
+        },
+        {
+          "info": {
+            "name": "Register a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a webhook"
+        },
+        {
+          "info": {
+            "name": "Update a webhook configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook configuration"
+        },
+        {
+          "info": {
+            "name": "Get webhook by id for your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get webhook by id for your organization"
+        },
+        {
+          "info": {
+            "name": "Un-register a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.visotrust.com/api/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Un-register a webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-vendor-directory-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-vendor-directory-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getVendorDirectoryByDomainOrUrl",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/directory/search",
+            "params": [
+              {
+                "name": "urlOrDomain",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

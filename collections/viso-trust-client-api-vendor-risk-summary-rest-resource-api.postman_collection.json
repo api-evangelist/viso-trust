@@ -1,0 +1,241 @@
+{
+  "item": [
+    {
+      "id": "9bfe48bd-0cbe-4244-95d7-09420cd875d4",
+      "name": "client-api-vendor-risk-summary-rest-resource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6d3a1ce-9848-4cd2-b9c3-7cdf5f2d83fe",
+          "name": "Get vendor risk summary by vendor ID",
+          "request": {
+            "name": "Get vendor risk summary by vendor ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "vendors",
+                ":id",
+                "risk-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7ad69cb-e378-43d8-b1e5-46ae750a0038",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "vendors",
+                    ":id",
+                    "risk-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendorId\": 1718,\n  \"vendorName\": \"string\",\n  \"evaluatedAt\": \"1987-09-10T16:55:06.971Z\",\n  \"overallRiskLevel\": \"string\",\n  \"overallRiskScore\": 4851.574512040924,\n  \"relationshipCount\": 1070,\n  \"relationships\": [\n    {\n      \"relationshipId\": 4477,\n      \"productServiceId\": \"4bc7b420-48a2-1d38-f4ed-33b4130830a0\",\n      \"productServiceName\": \"string\",\n      \"assessmentStatus\": \"COLLECTING_INFORMATION\",\n      \"riskLevel\": \"string\",\n      \"riskScore\": 3282.758762693827,\n      \"lastAssessedAt\": \"1954-07-04T11:52:49.600Z\",\n      \"controlDomainSummary\": [\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        },\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        }\n      ]\n    },\n    {\n      \"relationshipId\": 9233,\n      \"productServiceId\": \"32cc4f1e-038f-2347-7490-95724178bef8\",\n      \"productServiceName\": \"string\",\n      \"assessmentStatus\": \"DELETED\",\n      \"riskLevel\": \"string\",\n      \"riskScore\": 9762.14639841331,\n      \"lastAssessedAt\": \"1991-01-17T17:35:47.694Z\",\n      \"controlDomainSummary\": [\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        },\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"aggregateControlDomainSummary\": [\n    {\n      \"domain\": \"string\",\n      \"highestRiskLevel\": \"string\",\n      \"affectedRelationships\": [\n        162,\n        7886\n      ]\n    },\n    {\n      \"domain\": \"string\",\n      \"highestRiskLevel\": \"string\",\n      \"affectedRelationships\": [\n        5158,\n        8191\n      ]\n    }\n  ],\n  \"summaryText\": \"string\",\n  \"emptySummaryReason\": \"string\",\n  \"summaryGeneratedAt\": \"2018-09-19T01:22:19.432Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dbc4e9e-e8f6-437d-8cdf-9211e629613a",
+          "name": "Get vendor risk summary by vendor name or domain",
+          "request": {
+            "name": "Get vendor risk summary by vendor name or domain",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "vendors",
+                "risk-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc2cacc5-9a42-417d-b5d4-0ed86d6f854e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "vendors",
+                    "risk-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendorId\": 1718,\n  \"vendorName\": \"string\",\n  \"evaluatedAt\": \"1987-09-10T16:55:06.971Z\",\n  \"overallRiskLevel\": \"string\",\n  \"overallRiskScore\": 4851.574512040924,\n  \"relationshipCount\": 1070,\n  \"relationships\": [\n    {\n      \"relationshipId\": 4477,\n      \"productServiceId\": \"4bc7b420-48a2-1d38-f4ed-33b4130830a0\",\n      \"productServiceName\": \"string\",\n      \"assessmentStatus\": \"COLLECTING_INFORMATION\",\n      \"riskLevel\": \"string\",\n      \"riskScore\": 3282.758762693827,\n      \"lastAssessedAt\": \"1954-07-04T11:52:49.600Z\",\n      \"controlDomainSummary\": [\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        },\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        }\n      ]\n    },\n    {\n      \"relationshipId\": 9233,\n      \"productServiceId\": \"32cc4f1e-038f-2347-7490-95724178bef8\",\n      \"productServiceName\": \"string\",\n      \"assessmentStatus\": \"DELETED\",\n      \"riskLevel\": \"string\",\n      \"riskScore\": 9762.14639841331,\n      \"lastAssessedAt\": \"1991-01-17T17:35:47.694Z\",\n      \"controlDomainSummary\": [\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        },\n        {\n          \"domain\": \"string\",\n          \"riskLevel\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"aggregateControlDomainSummary\": [\n    {\n      \"domain\": \"string\",\n      \"highestRiskLevel\": \"string\",\n      \"affectedRelationships\": [\n        162,\n        7886\n      ]\n    },\n    {\n      \"domain\": \"string\",\n      \"highestRiskLevel\": \"string\",\n      \"affectedRelationships\": [\n        5158,\n        8191\n      ]\n    }\n  ],\n  \"summaryText\": \"string\",\n  \"emptySummaryReason\": \"string\",\n  \"summaryGeneratedAt\": \"2018-09-19T01:22:19.432Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.visotrust.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e608151a-8314-4ca7-bbde-6344b6ec3dfe",
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-vendor-risk-summary-rest-resource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "VISO TRUST",
+      "type": "text/plain"
+    }
+  }
+}

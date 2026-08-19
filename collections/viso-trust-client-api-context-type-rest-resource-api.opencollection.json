@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-context-type-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-context-type-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all business cases for your organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/business-cases"
+          },
+          "docs": "Get all business cases for your organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

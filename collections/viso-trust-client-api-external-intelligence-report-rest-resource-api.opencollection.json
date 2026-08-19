@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-external-intelligence-report-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-external-intelligence-report-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new SecurityScorecard intelligence report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/security-scorecard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SecurityScorecard intelligence report"
+        },
+        {
+          "info": {
+            "name": "Bulk create SecurityScorecard intelligence reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/security-scorecard/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk create SecurityScorecard intelligence reports"
+        },
+        {
+          "info": {
+            "name": "Create a new Recorded Future intelligence report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/recorded-future",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Recorded Future intelligence report"
+        },
+        {
+          "info": {
+            "name": "Bulk create Recorded Future intelligence reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/recorded-future/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk create Recorded Future intelligence reports"
+        },
+        {
+          "info": {
+            "name": "Create a new BitSight intelligence report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/bitsight",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new BitSight intelligence report"
+        },
+        {
+          "info": {
+            "name": "Bulk create BitSight intelligence reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/bitsight/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk create BitSight intelligence reports"
+        },
+        {
+          "info": {
+            "name": "Get all intelligence reports for a specific vendor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/vendor/:vendorDomain",
+            "params": [
+              {
+                "name": "vendorDomain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get all intelligence reports for a specific vendor"
+        },
+        {
+          "info": {
+            "name": "Get the latest intelligence report for a vendor from a specific source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/external-intelligence-reports/vendor/:vendorDomain/latest/:source",
+            "params": [
+              {
+                "name": "vendorDomain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the latest intelligence report for a vendor from a specific source"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

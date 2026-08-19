@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VISO TRUST API Documentation client-api-assessment-rest-resource client-api-questionnaire-rest-resource API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "client-api-questionnaire-rest-resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all questionnaires available for a relationship.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id/questionnaires",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns every active organization-level questionnaire alongside its effective enabled state for the given relationship. A questionnaire is enabled for the relationship when it has been explicitly enabled via `PUT /relationships/{id}/questionnaires`, or when no relationship-level configuration exists and the questionnaire is enabled at the organization level."
+        },
+        {
+          "info": {
+            "name": "Update which questionnaires are enabled for a relationship.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.visotrust.com/api/v1/relationships/:id/questionnaires",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the relationship's enabled-questionnaire list with the provided ids. Any active organization questionnaire not included in `enabledQuestionnaireIds` is disabled for the relationship."
+        },
+        {
+          "info": {
+            "name": "Get all questionnaires available to your organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.visotrust.com/api/v1/questionnaires"
+          },
+          "docs": "Returns the active questionnaires configured for your organization. Use `GET /relationships/{id}/questionnaires` to see which questionnaires are enabled for a particular relationship, and `PUT /relationships/{id}/questionnaires` to enable or disable them per relationship before passing their ids to the Start Assessment endpoint via the `questionnaires` field."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
