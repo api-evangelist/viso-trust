@@ -7,6 +7,18 @@ description: VISO TRUST is an AI-powered third-party risk management (TPRM) plat
   Future, BitSight), risk scoring, audit logging, and a VISO Chat agent. The public Client API (v1) exposes
   relationships, assessments, vendor risk summaries, questionnaires, users, and webhooks over HTTPS with
   bearer-token auth.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
