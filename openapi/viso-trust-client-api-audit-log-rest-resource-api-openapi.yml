@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-audit-log-rest-resource API
+  title: VISO TRUST API Documentation Client API Audit Log Rest…
   description: VISO TRUST
   version: v1.0
 servers:
@@ -15,7 +15,7 @@ paths:
     post:
       tags:
       - client-api-audit-log-rest-resource
-      summary: Get all user audit log events for your organization in the time frame, limited to 500 records
+      summary: Get all user audit log events for your organization in the time frame, limited…
       operationId: getAllAuditLogEventsRest
       requestBody:
         content:
@@ -36,7 +36,7 @@ paths:
     post:
       tags:
       - client-api-audit-log-rest-resource
-      summary: Get filtered audit log events based on specific types and categories for your organization, limited to 500 records
+      summary: Get filtered audit log events based on specific types and categories for your…
       operationId: getFilteredAuditLogEventsRest
       requestBody:
         content:
@@ -55,39 +55,6 @@ paths:
                   $ref: '#/components/schemas/AuditEvent'
 components:
   schemas:
-    UserAuditEvent:
-      type: object
-      properties:
-        auditEventType:
-          type: string
-          enum:
-          - USER_LOGGED_OUT
-          - USER_CREATED
-          - USER_UPDATED
-          - USER_FIRST_LOG_IN
-          - EXISTING_USER_FIRST_LOG_IN
-          - NEW_USER_FIRST_LOG_IN
-          - USER_LOGGED_IN
-          - USER_DEFAULT_SUBSCRIBER_ADDED
-          - USER_DEFAULT_SUBSCRIBER_REMOVED
-          - USER_SUBSCRIBED
-          - USER_UNSUBSCRIBED
-          - USER_UPLOADED_ARTIFACT
-          - USER_DOWNLOADED_ARTIFACT
-          - USER_EXPORTED_ARTIFACT
-        dateTime:
-          type: string
-          format: date-time
-        email:
-          type: string
-        userId:
-          type: integer
-          format: int64
-    AuditEventType:
-      type: object
-      properties:
-        name:
-          type: string
     AuditLogFilterRequest:
       type: object
       default: null
@@ -164,6 +131,39 @@ components:
       required:
       - end
       - start
+    UserAuditEvent:
+      type: object
+      properties:
+        auditEventType:
+          type: string
+          enum:
+          - USER_LOGGED_OUT
+          - USER_CREATED
+          - USER_UPDATED
+          - USER_FIRST_LOG_IN
+          - EXISTING_USER_FIRST_LOG_IN
+          - NEW_USER_FIRST_LOG_IN
+          - USER_LOGGED_IN
+          - USER_DEFAULT_SUBSCRIBER_ADDED
+          - USER_DEFAULT_SUBSCRIBER_REMOVED
+          - USER_SUBSCRIBED
+          - USER_UNSUBSCRIBED
+          - USER_UPLOADED_ARTIFACT
+          - USER_DOWNLOADED_ARTIFACT
+          - USER_EXPORTED_ARTIFACT
+        dateTime:
+          type: string
+          format: date-time
+        email:
+          type: string
+        userId:
+          type: integer
+          format: int64
+    AuditEventType:
+      type: object
+      properties:
+        name:
+          type: string
     AuditEvent:
       type: object
       properties:

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-external-intelligence-report-rest-resource API
+  title: VISO TRUST API Documentation Client API External…
   description: VISO TRUST
   version: v1.0
 servers:
@@ -182,26 +182,6 @@ paths:
                 $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
 components:
   schemas:
-    BulkExternalIntelligenceReportResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          format: int32
-        created:
-          type: array
-          items:
-            type: string
-            format: uuid
-          uniqueItems: true
-        backgroundedCount:
-          type: integer
-          format: int32
-        backgrounded:
-          type: boolean
-        totalFailureCount:
-          type: integer
-          format: int32
     ExternalIntelligenceReportClientView:
       type: object
       properties:
@@ -319,32 +299,6 @@ components:
           type:
           - string
           - 'null'
-    SecurityScorecardReportCreateInput:
-      type: object
-      default: null
-      properties:
-        vendorDomain:
-          type: string
-        reportDate:
-          type: string
-          format: date-time
-        link:
-          type:
-          - string
-          - 'null'
-        grade:
-          type: string
-        domain:
-          type:
-          - string
-          - 'null'
-        score:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      required:
-      - grade
     RecordedFutureReportCreateInput:
       type: object
       default: null
@@ -450,6 +404,52 @@ components:
           format: int32
       required:
       - guid
+    BulkExternalIntelligenceReportResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          format: int32
+        created:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        backgroundedCount:
+          type: integer
+          format: int32
+        backgrounded:
+          type: boolean
+        totalFailureCount:
+          type: integer
+          format: int32
+    SecurityScorecardReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        grade:
+          type: string
+        domain:
+          type:
+          - string
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - grade
   securitySchemes:
     bearerAuth:
       type: http

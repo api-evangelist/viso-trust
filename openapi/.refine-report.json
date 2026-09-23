@@ -1,18 +1,7 @@
 {
   "provider": "viso-trust",
   "sources": [
-    "viso-trust-client-api-assessment-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-audit-log-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-chat-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-context-type-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-data-type-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-external-intelligence-report-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-questionnaire-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-relationship-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-user-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-vendor-directory-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-vendor-risk-summary-rest-resource-api-openapi.yml",
-    "viso-trust-client-api-webhook-rest-resource-api-openapi.yml"
+    "_original/viso-trust-openapi-original.json"
   ],
   "outputs": [
     "viso-trust-client-api-assessment-rest-resource-api-openapi.yml",
@@ -31,6 +20,35 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "viso-trust-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-assessment-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-audit-log-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-chat-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-context-type-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-data-type-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-external-intelligence-report-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-questionnaire-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-relationship-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-user-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-vendor-directory-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-vendor-risk-summary-rest-resource",
+    "viso-trust-openapi-original.json: declared missing tag: client-api-webhook-rest-resource",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "viso-trust-client-api-assessment-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-audit-log-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-chat-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-context-type-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-data-type-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-external-intelligence-report-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-questionnaire-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-relationship-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-user-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-vendor-directory-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-vendor-risk-summary-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "viso-trust-client-api-webhook-rest-resource-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

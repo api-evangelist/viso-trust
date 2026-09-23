@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: VISO TRUST API Documentation client-api-assessment-rest-resource client-api-vendor-risk-summary-rest-resource API
+  title: VISO TRUST API Documentation Client API Vendor Risk Summary…
   description: VISO TRUST
   version: v1.0
 servers:
@@ -57,40 +57,13 @@ paths:
                 $ref: '#/components/schemas/VendorRiskSummaryResponse'
 components:
   schemas:
-    VendorRiskSummaryResponse:
+    ControlDomainSummary:
       type: object
       properties:
-        vendorId:
-          type: integer
-          format: int64
-        vendorName:
+        domain:
           type: string
-        evaluatedAt:
+        riskLevel:
           type: string
-          format: date-time
-        overallRiskLevel:
-          type: string
-        overallRiskScore:
-          type: number
-          format: float
-        relationshipCount:
-          type: integer
-          format: int32
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationshipEntry'
-        aggregateControlDomainSummary:
-          type: array
-          items:
-            $ref: '#/components/schemas/AggregateControlDomainSummary'
-        summaryText:
-          type: string
-        emptySummaryReason:
-          type: string
-        summaryGeneratedAt:
-          type: string
-          format: date-time
     RelationshipEntry:
       type: object
       properties:
@@ -126,13 +99,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ControlDomainSummary'
-    ControlDomainSummary:
+    VendorRiskSummaryResponse:
       type: object
       properties:
-        domain:
+        vendorId:
+          type: integer
+          format: int64
+        vendorName:
           type: string
-        riskLevel:
+        evaluatedAt:
           type: string
+          format: date-time
+        overallRiskLevel:
+          type: string
+        overallRiskScore:
+          type: number
+          format: float
+        relationshipCount:
+          type: integer
+          format: int32
+        relationships:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationshipEntry'
+        aggregateControlDomainSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateControlDomainSummary'
+        summaryText:
+          type: string
+        emptySummaryReason:
+          type: string
+        summaryGeneratedAt:
+          type: string
+          format: date-time
     AggregateControlDomainSummary:
       type: object
       properties:
