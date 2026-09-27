@@ -55,6 +55,14 @@ paths:
                   $ref: '#/components/schemas/AuditEvent'
 components:
   schemas:
+    AuditEvent:
+      type: object
+      properties:
+        auditEventType:
+          $ref: '#/components/schemas/AuditEventType'
+        dateTime:
+          type: string
+          format: date-time
     AuditLogFilterRequest:
       type: object
       default: null
@@ -164,14 +172,6 @@ components:
       properties:
         name:
           type: string
-    AuditEvent:
-      type: object
-      properties:
-        auditEventType:
-          $ref: '#/components/schemas/AuditEventType'
-        dateTime:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

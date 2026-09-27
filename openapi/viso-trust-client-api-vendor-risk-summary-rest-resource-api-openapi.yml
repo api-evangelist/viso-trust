@@ -57,13 +57,40 @@ paths:
                 $ref: '#/components/schemas/VendorRiskSummaryResponse'
 components:
   schemas:
-    ControlDomainSummary:
+    VendorRiskSummaryResponse:
       type: object
       properties:
-        domain:
+        vendorId:
+          type: integer
+          format: int64
+        vendorName:
           type: string
-        riskLevel:
+        evaluatedAt:
           type: string
+          format: date-time
+        overallRiskLevel:
+          type: string
+        overallRiskScore:
+          type: number
+          format: float
+        relationshipCount:
+          type: integer
+          format: int32
+        relationships:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationshipEntry'
+        aggregateControlDomainSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregateControlDomainSummary'
+        summaryText:
+          type: string
+        emptySummaryReason:
+          type: string
+        summaryGeneratedAt:
+          type: string
+          format: date-time
     RelationshipEntry:
       type: object
       properties:
@@ -99,40 +126,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ControlDomainSummary'
-    VendorRiskSummaryResponse:
-      type: object
-      properties:
-        vendorId:
-          type: integer
-          format: int64
-        vendorName:
-          type: string
-        evaluatedAt:
-          type: string
-          format: date-time
-        overallRiskLevel:
-          type: string
-        overallRiskScore:
-          type: number
-          format: float
-        relationshipCount:
-          type: integer
-          format: int32
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationshipEntry'
-        aggregateControlDomainSummary:
-          type: array
-          items:
-            $ref: '#/components/schemas/AggregateControlDomainSummary'
-        summaryText:
-          type: string
-        emptySummaryReason:
-          type: string
-        summaryGeneratedAt:
-          type: string
-          format: date-time
     AggregateControlDomainSummary:
       type: object
       properties:
@@ -145,6 +138,13 @@ components:
           items:
             type: integer
             format: int64
+    ControlDomainSummary:
+      type: object
+      properties:
+        domain:
+          type: string
+        riskLevel:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

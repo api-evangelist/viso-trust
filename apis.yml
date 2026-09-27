@@ -47,7 +47,6 @@ tags:
 - Company
 - Security
 - Third-Party Risk Management
-- TPRM
 - Vendor Risk
 - Risk Management
 - Compliance
@@ -65,7 +64,7 @@ tags_raw:
 - Artificial Intelligence
 apis:
 - aid: viso-trust:viso-trust-client-api-assessment-rest-resource-api
-  name: VISO Trust client-api-assessment-rest-resource API
+  name: VISO Trust Client API Assessment Rest Resource API
   description: >-
     The client-api-assessment-rest-resource API from VISO Trust — 7 operation(s) for client-api-assessment-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -80,7 +79,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-audit-log-rest-resource-api
-  name: VISO Trust client-api-audit-log-rest-resource API
+  name: VISO Trust Client API Audit Log Rest Resource API
   description: >-
     The client-api-audit-log-rest-resource API from VISO Trust — 2 operation(s) for client-api-audit-log-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -95,7 +94,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-chat-rest-resource-api
-  name: VISO Trust client-api-chat-rest-resource API
+  name: VISO Trust Client API Chat Rest Resource API
   description: >-
     The client-api-chat-rest-resource API from VISO Trust — 1 operation(s) for client-api-chat-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -110,7 +109,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-context-type-rest-resource-api
-  name: VISO Trust client-api-context-type-rest-resource API
+  name: VISO Trust Client API Context Type Rest Resource API
   description: >-
     The client-api-context-type-rest-resource API from VISO Trust — 1 operation(s) for client-api-context-type-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -125,7 +124,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-data-type-rest-resource-api
-  name: VISO Trust client-api-data-type-rest-resource API
+  name: VISO Trust Client API Data Type Rest Resource API
   description: >-
     The client-api-data-type-rest-resource API from VISO Trust — 1 operation(s) for client-api-data-type-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -140,7 +139,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-external-intelligence-report-rest-resource-api
-  name: VISO Trust client-api-external-intelligence-report-rest-resource API
+  name: VISO Trust Client API External Intelligence Report Rest Resource API
   description: >-
     The client-api-external-intelligence-report-rest-resource API from VISO Trust — 8 operation(s) for
     client-api-external-intelligence-report-rest-resource.
@@ -156,7 +155,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-questionnaire-rest-resource-api
-  name: VISO Trust client-api-questionnaire-rest-resource API
+  name: VISO Trust Client API Questionnaire Rest Resource API
   description: >-
     The client-api-questionnaire-rest-resource API from VISO Trust — 2 operation(s) for client-api-questionnaire-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -171,7 +170,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-relationship-rest-resource-api
-  name: VISO Trust client-api-relationship-rest-resource API
+  name: VISO Trust Client API Relationship Rest Resource API
   description: >-
     The client-api-relationship-rest-resource API from VISO Trust — 11 operation(s) for client-api-relationship-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -186,7 +185,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-user-rest-resource-api
-  name: VISO Trust client-api-user-rest-resource API
+  name: VISO Trust Client API User Rest Resource API
   description: >-
     The client-api-user-rest-resource API from VISO Trust — 2 operation(s) for client-api-user-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -201,7 +200,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-vendor-directory-rest-resource-api
-  name: VISO Trust client-api-vendor-directory-rest-resource API
+  name: VISO Trust Client API Vendor Directory Rest Resource API
   description: >-
     The client-api-vendor-directory-rest-resource API from VISO Trust — 1 operation(s) for client-api-vendor-directory-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -216,7 +215,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-vendor-risk-summary-rest-resource-api
-  name: VISO Trust client-api-vendor-risk-summary-rest-resource API
+  name: VISO Trust Client API Vendor Risk Summary Rest Resource API
   description: >-
     The client-api-vendor-risk-summary-rest-resource API from VISO Trust — 2 operation(s) for client-api-vendor-risk-summary-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication
@@ -231,7 +230,7 @@ apis:
   - type: APIReference
     url: https://docs.visotrust.com/api-reference/authentication
 - aid: viso-trust:viso-trust-client-api-webhook-rest-resource-api
-  name: VISO Trust client-api-webhook-rest-resource API
+  name: VISO Trust Client API Webhook Rest Resource API
   description: >-
     The client-api-webhook-rest-resource API from VISO Trust — 2 operation(s) for client-api-webhook-rest-resource.
   humanURL: https://docs.visotrust.com/api-reference/authentication

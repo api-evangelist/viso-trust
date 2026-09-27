@@ -182,6 +182,76 @@ paths:
                 $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
 components:
   schemas:
+    BulkExternalIntelligenceReportResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          format: int32
+        created:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        backgroundedCount:
+          type: integer
+          format: int32
+        backgrounded:
+          type: boolean
+        totalFailureCount:
+          type: integer
+          format: int32
+    BitsightReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        guid:
+          type: string
+        customId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        primaryDomain:
+          type:
+          - string
+          - 'null'
+        ratingRange:
+          type:
+          - string
+          - 'null'
+        ratingColor:
+          type:
+          - string
+          - 'null'
+        confidence:
+          type:
+          - string
+          - 'null'
+        rating:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - guid
     ExternalIntelligenceReportClientView:
       type: object
       properties:
@@ -299,6 +369,32 @@ components:
           type:
           - string
           - 'null'
+    SecurityScorecardReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        grade:
+          type: string
+        domain:
+          type:
+          - string
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - grade
     RecordedFutureReportCreateInput:
       type: object
       default: null
@@ -354,102 +450,6 @@ components:
       - entityType
       - riskLevel
       - riskScore
-    BitsightReportCreateInput:
-      type: object
-      default: null
-      properties:
-        vendorDomain:
-          type: string
-        reportDate:
-          type: string
-          format: date-time
-        link:
-          type:
-          - string
-          - 'null'
-        guid:
-          type: string
-        customId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        primaryDomain:
-          type:
-          - string
-          - 'null'
-        ratingRange:
-          type:
-          - string
-          - 'null'
-        ratingColor:
-          type:
-          - string
-          - 'null'
-        confidence:
-          type:
-          - string
-          - 'null'
-        rating:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      required:
-      - guid
-    BulkExternalIntelligenceReportResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          format: int32
-        created:
-          type: array
-          items:
-            type: string
-            format: uuid
-          uniqueItems: true
-        backgroundedCount:
-          type: integer
-          format: int32
-        backgrounded:
-          type: boolean
-        totalFailureCount:
-          type: integer
-          format: int32
-    SecurityScorecardReportCreateInput:
-      type: object
-      default: null
-      properties:
-        vendorDomain:
-          type: string
-        reportDate:
-          type: string
-          format: date-time
-        link:
-          type:
-          - string
-          - 'null'
-        grade:
-          type: string
-        domain:
-          type:
-          - string
-          - 'null'
-        score:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      required:
-      - grade
   securitySchemes:
     bearerAuth:
       type: http
