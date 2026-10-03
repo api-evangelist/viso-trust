@@ -182,6 +182,61 @@ paths:
                 $ref: '#/components/schemas/ExternalIntelligenceReportClientView'
 components:
   schemas:
+    RecordedFutureReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        entityType:
+          type: string
+        entity:
+          type: string
+        riskScore:
+          type: integer
+          format: int32
+        riskLevel:
+          type: string
+        firstSeen:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastSeen:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        triggeredRuleCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        maxRuleCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        summary:
+          type:
+          - string
+          - 'null'
+        criticalityLabel:
+          type:
+          - string
+          - 'null'
+      required:
+      - entity
+      - entityType
+      - riskLevel
+      - riskScore
     BulkExternalIntelligenceReportResponse:
       type: object
       properties:
@@ -202,6 +257,32 @@ components:
         totalFailureCount:
           type: integer
           format: int32
+    SecurityScorecardReportCreateInput:
+      type: object
+      default: null
+      properties:
+        vendorDomain:
+          type: string
+        reportDate:
+          type: string
+          format: date-time
+        link:
+          type:
+          - string
+          - 'null'
+        grade:
+          type: string
+        domain:
+          type:
+          - string
+          - 'null'
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - grade
     BitsightReportCreateInput:
       type: object
       default: null
@@ -369,87 +450,6 @@ components:
           type:
           - string
           - 'null'
-    SecurityScorecardReportCreateInput:
-      type: object
-      default: null
-      properties:
-        vendorDomain:
-          type: string
-        reportDate:
-          type: string
-          format: date-time
-        link:
-          type:
-          - string
-          - 'null'
-        grade:
-          type: string
-        domain:
-          type:
-          - string
-          - 'null'
-        score:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      required:
-      - grade
-    RecordedFutureReportCreateInput:
-      type: object
-      default: null
-      properties:
-        vendorDomain:
-          type: string
-        reportDate:
-          type: string
-          format: date-time
-        link:
-          type:
-          - string
-          - 'null'
-        entityType:
-          type: string
-        entity:
-          type: string
-        riskScore:
-          type: integer
-          format: int32
-        riskLevel:
-          type: string
-        firstSeen:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastSeen:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        triggeredRuleCount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        maxRuleCount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        summary:
-          type:
-          - string
-          - 'null'
-        criticalityLabel:
-          type:
-          - string
-          - 'null'
-      required:
-      - entity
-      - entityType
-      - riskLevel
-      - riskScore
   securitySchemes:
     bearerAuth:
       type: http

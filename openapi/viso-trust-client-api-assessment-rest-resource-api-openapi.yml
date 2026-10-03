@@ -170,15 +170,38 @@ paths:
                 $ref: '#/components/schemas/StreamingResponseBody'
 components:
   schemas:
-    AssessmentSummaryView:
+    StreamingResponseBody: {}
+    UpdateAssessmentFollowupInput:
       type: object
-      default: null
       properties:
-        id:
-          type: integer
-          format: int64
-        summary:
+        followupType:
           type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - CONCIERGE
+        followupRiskThreshold:
+          type:
+          - string
+          - 'null'
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+        followupTimeline:
+          type:
+          - string
+          - 'null'
+          enum:
+          - SEVEN_DAYS
+          - FOURTEEN_DAYS
+          - THIRTY_DAYS
+          - SIXTY_DAYS
+          - NINETY_DAYS
+      required:
+      - followupType
     AssessmentRecommendation:
       type: object
       default: null
@@ -198,6 +221,35 @@ components:
         createdDate:
           type: string
           format: date-time
+    VisoUser:
+      type: object
+      default: null
+      properties:
+        businessUnit:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    AssessmentSummaryView:
+      type: object
+      default: null
+      properties:
+        id:
+          type: integer
+          format: int64
+        summary:
+          type: string
+    UpdateAssessmentExpirationInput:
+      type: object
+      properties:
+        expirationDate:
+          type: string
+          format: date-time
+      required:
+      - expirationDate
     Assessment:
       type: object
       default: null
@@ -314,46 +366,6 @@ components:
           - MEDIUM
           - HIGH
           - EXTREME
-    StreamingResponseBody: {}
-    UpdateAssessmentExpirationInput:
-      type: object
-      properties:
-        expirationDate:
-          type: string
-          format: date-time
-      required:
-      - expirationDate
-    UpdateAssessmentFollowupInput:
-      type: object
-      properties:
-        followupType:
-          type: string
-          enum:
-          - MANUAL
-          - AUTOMATIC
-          - CONCIERGE
-        followupRiskThreshold:
-          type:
-          - string
-          - 'null'
-          enum:
-          - NO_CONTEXT
-          - LOW
-          - MEDIUM
-          - HIGH
-          - EXTREME
-        followupTimeline:
-          type:
-          - string
-          - 'null'
-          enum:
-          - SEVEN_DAYS
-          - FOURTEEN_DAYS
-          - THIRTY_DAYS
-          - SIXTY_DAYS
-          - NINETY_DAYS
-      required:
-      - followupType
     AssessmentStatusHistory:
       type: object
       default: null
@@ -373,18 +385,6 @@ components:
           - CANCELLED
           - DELETED
           - COLLECTING_INFORMATION
-    VisoUser:
-      type: object
-      default: null
-      properties:
-        businessUnit:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -126,6 +126,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ControlDomainSummary'
+    ControlDomainSummary:
+      type: object
+      properties:
+        domain:
+          type: string
+        riskLevel:
+          type: string
     AggregateControlDomainSummary:
       type: object
       properties:
@@ -138,13 +145,6 @@ components:
           items:
             type: integer
             format: int64
-    ControlDomainSummary:
-      type: object
-      properties:
-        domain:
-          type: string
-        riskLevel:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

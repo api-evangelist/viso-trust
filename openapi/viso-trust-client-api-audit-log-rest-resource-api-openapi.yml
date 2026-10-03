@@ -55,6 +55,34 @@ paths:
                   $ref: '#/components/schemas/AuditEvent'
 components:
   schemas:
+    UserAuditEvent:
+      type: object
+      properties:
+        auditEventType:
+          type: string
+          enum:
+          - USER_LOGGED_OUT
+          - USER_CREATED
+          - USER_UPDATED
+          - USER_FIRST_LOG_IN
+          - EXISTING_USER_FIRST_LOG_IN
+          - NEW_USER_FIRST_LOG_IN
+          - USER_LOGGED_IN
+          - USER_DEFAULT_SUBSCRIBER_ADDED
+          - USER_DEFAULT_SUBSCRIBER_REMOVED
+          - USER_SUBSCRIBED
+          - USER_UNSUBSCRIBED
+          - USER_UPLOADED_ARTIFACT
+          - USER_DOWNLOADED_ARTIFACT
+          - USER_EXPORTED_ARTIFACT
+        dateTime:
+          type: string
+          format: date-time
+        email:
+          type: string
+        userId:
+          type: integer
+          format: int64
     AuditEvent:
       type: object
       properties:
@@ -139,34 +167,6 @@ components:
       required:
       - end
       - start
-    UserAuditEvent:
-      type: object
-      properties:
-        auditEventType:
-          type: string
-          enum:
-          - USER_LOGGED_OUT
-          - USER_CREATED
-          - USER_UPDATED
-          - USER_FIRST_LOG_IN
-          - EXISTING_USER_FIRST_LOG_IN
-          - NEW_USER_FIRST_LOG_IN
-          - USER_LOGGED_IN
-          - USER_DEFAULT_SUBSCRIBER_ADDED
-          - USER_DEFAULT_SUBSCRIBER_REMOVED
-          - USER_SUBSCRIBED
-          - USER_UNSUBSCRIBED
-          - USER_UPLOADED_ARTIFACT
-          - USER_DOWNLOADED_ARTIFACT
-          - USER_EXPORTED_ARTIFACT
-        dateTime:
-          type: string
-          format: date-time
-        email:
-          type: string
-        userId:
-          type: integer
-          format: int64
     AuditEventType:
       type: object
       properties:
