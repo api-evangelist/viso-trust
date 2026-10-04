@@ -250,6 +250,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/viso-trust-capability-edges.yml
+  name: VISO Trust Business Capability Map
 - type: Overlay
   url: overlays/viso-trust-openapi-overlay.yaml
 - type: Website
