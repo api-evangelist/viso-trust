@@ -170,7 +170,6 @@ paths:
                 $ref: '#/components/schemas/StreamingResponseBody'
 components:
   schemas:
-    StreamingResponseBody: {}
     UpdateAssessmentFollowupInput:
       type: object
       properties:
@@ -202,6 +201,18 @@ components:
           - NINETY_DAYS
       required:
       - followupType
+    VisoUser:
+      type: object
+      default: null
+      properties:
+        businessUnit:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
     AssessmentRecommendation:
       type: object
       default: null
@@ -221,18 +232,6 @@ components:
         createdDate:
           type: string
           format: date-time
-    VisoUser:
-      type: object
-      default: null
-      properties:
-        businessUnit:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
     AssessmentSummaryView:
       type: object
       default: null
@@ -242,6 +241,25 @@ components:
           format: int64
         summary:
           type: string
+    AssessmentStatusHistory:
+      type: object
+      default: null
+      properties:
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
     UpdateAssessmentExpirationInput:
       type: object
       properties:
@@ -250,6 +268,7 @@ components:
           format: date-time
       required:
       - expirationDate
+    StreamingResponseBody: {}
     Assessment:
       type: object
       default: null
@@ -366,25 +385,6 @@ components:
           - MEDIUM
           - HIGH
           - EXTREME
-    AssessmentStatusHistory:
-      type: object
-      default: null
-      properties:
-        date:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - NOT_ASSESSED
-          - AWAITING_REMEDIATION
-          - STARTED
-          - REVIEW_STARTED
-          - AUDIT_COMPLETED
-          - COMPLETED
-          - CANCELLED
-          - DELETED
-          - COLLECTING_INFORMATION
   securitySchemes:
     bearerAuth:
       type: http

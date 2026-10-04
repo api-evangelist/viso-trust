@@ -80,27 +80,21 @@ paths:
                   $ref: '#/components/schemas/QuestionnaireView'
 components:
   schemas:
-    RelationshipQuestionnaireView:
+    RelationshipQuestionnairesUpdateInput:
       type: object
       default: null
-      description: A questionnaire available to your organization, with the effective enabled state for a specific relationship.
+      description: Replaces the relationship's enabled-questionnaire list. Every active organization-level questionnaire not included in `enabledQuestionnaireIds` is marked disabled for the relationship, overriding the organization-level default.
       properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        enabled:
-          type: boolean
-          default: false
-          description: True if this questionnaire will be answered when an assessment is started for this relationship. Reflects relationship-level overrides, falling back to the organization-level enabled flag when no override exists.
-        aiOnly:
-          type: boolean
-          default: false
-          description: If true, the questionnaire is answered by AI by default and is not sent to the vendor for manual response when assessing. It can still be explicitly selected for manual response by passing its id in the `questionnaires` field on the Start Assessment endpoint.
-        createdDate:
-          type: string
-          format: date-time
+        enabledQuestionnaireIds:
+          type: array
+          default: ''
+          description: Ids of questionnaires to enable for this relationship. Each id must reference an active organization-level questionnaire returned by `GET /questionnaires` or `GET /relationships/{id}/questionnaires`; unknown ids return 404. Pass an empty set to disable all questionnaires for the relationship.
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+      required:
+      - enabledQuestionnaireIds
     QuestionnaireView:
       type: object
       default: null
@@ -122,21 +116,27 @@ components:
         createdDate:
           type: string
           format: date-time
-    RelationshipQuestionnairesUpdateInput:
+    RelationshipQuestionnaireView:
       type: object
       default: null
-      description: Replaces the relationship's enabled-questionnaire list. Every active organization-level questionnaire not included in `enabledQuestionnaireIds` is marked disabled for the relationship, overriding the organization-level default.
+      description: A questionnaire available to your organization, with the effective enabled state for a specific relationship.
       properties:
-        enabledQuestionnaireIds:
-          type: array
-          default: ''
-          description: Ids of questionnaires to enable for this relationship. Each id must reference an active organization-level questionnaire returned by `GET /questionnaires` or `GET /relationships/{id}/questionnaires`; unknown ids return 404. Pass an empty set to disable all questionnaires for the relationship.
-          items:
-            type: string
-            format: uuid
-          uniqueItems: true
-      required:
-      - enabledQuestionnaireIds
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        enabled:
+          type: boolean
+          default: false
+          description: True if this questionnaire will be answered when an assessment is started for this relationship. Reflects relationship-level overrides, falling back to the organization-level enabled flag when no override exists.
+        aiOnly:
+          type: boolean
+          default: false
+          description: If true, the questionnaire is answered by AI by default and is not sent to the vendor for manual response when assessing. It can still be explicitly selected for manual response by passing its id in the `questionnaires` field on the Start Assessment endpoint.
+        createdDate:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

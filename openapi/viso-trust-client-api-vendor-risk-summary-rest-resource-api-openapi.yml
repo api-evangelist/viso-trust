@@ -91,6 +91,13 @@ components:
         summaryGeneratedAt:
           type: string
           format: date-time
+    ControlDomainSummary:
+      type: object
+      properties:
+        domain:
+          type: string
+        riskLevel:
+          type: string
     RelationshipEntry:
       type: object
       properties:
@@ -126,13 +133,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ControlDomainSummary'
-    ControlDomainSummary:
-      type: object
-      properties:
-        domain:
-          type: string
-        riskLevel:
-          type: string
     AggregateControlDomainSummary:
       type: object
       properties:

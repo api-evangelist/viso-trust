@@ -99,32 +99,6 @@ paths:
           description: OK
 components:
   schemas:
-    Webhook:
-      type: object
-      default: null
-      properties:
-        eventTypes:
-          type: array
-          default: ''
-          description: The events that will trigger this webhook.
-          items:
-            type: string
-          uniqueItems: true
-        description:
-          type: string
-        id:
-          type: integer
-          format: int64
-        serviceType:
-          type: string
-          enum:
-          - GENERIC
-          - SLACK
-          - DISCORD
-          - TEAMS
-          - WORKATO
-        webhookUrl:
-          type: string
     WebhookCreateUpdateRequest:
       type: object
       properties:
@@ -164,6 +138,32 @@ components:
             - ARTIFACT_EXPIRING
             - ARTIFACT_EXPIRED
           uniqueItems: true
+    Webhook:
+      type: object
+      default: null
+      properties:
+        eventTypes:
+          type: array
+          default: ''
+          description: The events that will trigger this webhook.
+          items:
+            type: string
+          uniqueItems: true
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        serviceType:
+          type: string
+          enum:
+          - GENERIC
+          - SLACK
+          - DISCORD
+          - TEAMS
+          - WORKATO
+        webhookUrl:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

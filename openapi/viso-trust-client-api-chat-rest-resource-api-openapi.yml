@@ -32,6 +32,14 @@ paths:
                 $ref: '#/components/schemas/VisoAgentClientApiChatResponse'
 components:
   schemas:
+    VisoAgentClientApiChatResponse:
+      type: object
+      properties:
+        conversationId:
+          type: string
+          format: uuid
+        reply:
+          type: string
     VisoAgentClientChatRequest:
       type: object
       properties:
@@ -45,14 +53,6 @@ components:
           minLength: 1
       required:
       - message
-    VisoAgentClientApiChatResponse:
-      type: object
-      properties:
-        conversationId:
-          type: string
-          format: uuid
-        reply:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
