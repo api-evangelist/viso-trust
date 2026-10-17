@@ -314,6 +314,22 @@ paths:
                 uniqueItems: true
 components:
   schemas:
+    LifecycleManagementUpdateRequest:
+      type: 'null'
+      properties:
+        artifactUpdateSettings:
+          $ref: '#/components/schemas/ArtifactUpdateSettings'
+        recertificationSettings:
+          $ref: '#/components/schemas/RecertificationSettings'
+    RelationshipOnboardRequest:
+      type: object
+      properties:
+        approvalSummary:
+          type:
+          - string
+          - 'null'
+        lifecycleManagementUpdateRequest:
+          $ref: '#/components/schemas/LifecycleManagementUpdateRequest'
     Relationship:
       type: object
       default: null
@@ -455,65 +471,49 @@ components:
             $ref: '#/components/schemas/RiskDimensionCoverageDTO'
       required:
       - name
-    LifecycleManagementUpdateRequest:
-      type: 'null'
-      properties:
-        artifactUpdateSettings:
-          $ref: '#/components/schemas/ArtifactUpdateSettings'
-        recertificationSettings:
-          $ref: '#/components/schemas/RecertificationSettings'
-    RelationshipOnboardRequest:
-      type: object
-      properties:
-        approvalSummary:
-          type:
-          - string
-          - 'null'
-        lifecycleManagementUpdateRequest:
-          $ref: '#/components/schemas/LifecycleManagementUpdateRequest'
-    CreateRelationshipByDomainRequest:
-      type: object
-      properties:
-        domain:
-          type: string
-          minLength: 1
-        vendorName:
-          type: string
-          minLength: 1
-        product:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        instantAnalysis:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - domain
-      - vendorName
-    AssessmentRecommendation:
+    ThirdPartyContactUpdateRequest:
       type: object
       default: null
       properties:
-        description:
+        relationshipId:
+          type: integer
+          format: int64
+        email:
           type: string
-        recommendationType:
+        firstName:
           type: string
-          enum:
-          - EXPIRED
-          - HIGH_ASSURANCE
-          - CONTROL_DOMAINS
-          - COMBINED
-          - CERT_ONLY
-          - LOW_COVERAGE
-          - PRESUMED_ARTIFACT
-        createdDate:
+        lastName:
           type: string
-          format: date-time
+      required:
+      - email
+      - firstName
+      - lastName
+      - relationshipId
+    TagsCreateInput:
+      type: object
+      default: null
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+          minItems: 1
+      required:
+      - tags
+    SlimDataTypeView:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    SlimContextTypeView:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+      - name
     PrimaryContact:
       type: object
       default: null
@@ -524,68 +524,6 @@ components:
           type: string
         email:
           type: string
-    SlimContextTypeView:
-      type: object
-      properties:
-        name:
-          type: string
-      required:
-      - name
-    SlimDataTypeView:
-      type: object
-      properties:
-        name:
-          type: string
-      required:
-      - name
-    AssessmentStatusHistory:
-      type: object
-      default: null
-      properties:
-        date:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - NOT_ASSESSED
-          - AWAITING_REMEDIATION
-          - STARTED
-          - REVIEW_STARTED
-          - AUDIT_COMPLETED
-          - COMPLETED
-          - CANCELLED
-          - DELETED
-          - COLLECTING_INFORMATION
-    StreamingResponseBody: {}
-    DataType:
-      type: object
-      default: null
-      properties:
-        name:
-          type: string
-    RiskDimensionCoverageDTO:
-      type: object
-      properties:
-        dimension:
-          type: string
-        inScope:
-          type: boolean
-        coverage:
-          type: string
-        coveragePercentage:
-          type: string
-    ArtifactUpdateSettings:
-      type: 'null'
-      properties:
-        artifactUpdateType:
-          type: string
-          enum:
-          - MANUAL
-          - AUTOMATIC
-          - NONE
-      required:
-      - artifactUpdateType
     RelationshipUpdateInput:
       type: object
       default: null
@@ -635,6 +573,172 @@ components:
           format: int32
           maximum: 5
           minimum: 1
+    AssessmentRecommendation:
+      type: object
+      default: null
+      properties:
+        description:
+          type: string
+        recommendationType:
+          type: string
+          enum:
+          - EXPIRED
+          - HIGH_ASSURANCE
+          - CONTROL_DOMAINS
+          - COMBINED
+          - CERT_ONLY
+          - LOW_COVERAGE
+          - PRESUMED_ARTIFACT
+        createdDate:
+          type: string
+          format: date-time
+    RiskDimensionCoverageDTO:
+      type: object
+      properties:
+        dimension:
+          type: string
+        inScope:
+          type: boolean
+        coverage:
+          type: string
+        coveragePercentage:
+          type: string
+    ExternalAssessment:
+      type: object
+      default: null
+      properties:
+        reviewFrequency:
+          type: string
+          enum:
+          - THREE_YEARS
+          - TWO_YEARS
+          - ANNUAL
+          - SEMIANNUAL
+          - QUARTERLY
+        recertificationType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+        assessmentCompletionDate:
+          type: string
+          format: date
+        assessmentStartDate:
+          type: string
+          format: date
+        automaticArtifactUpdates:
+          type: boolean
+        inherentRiskLevel:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+        residualRiskLevel:
+          type: string
+          enum:
+          - NO_CONTEXT
+          - LOW
+          - MEDIUM
+          - HIGH
+          - EXTREME
+      required:
+      - assessmentCompletionDate
+      - assessmentStartDate
+      - automaticArtifactUpdates
+      - inherentRiskLevel
+      - recertificationType
+      - residualRiskLevel
+      - reviewFrequency
+    CreateRelationshipByDomainRequest:
+      type: object
+      properties:
+        domain:
+          type: string
+          minLength: 1
+        vendorName:
+          type: string
+          minLength: 1
+        product:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        instantAnalysis:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - domain
+      - vendorName
+    RelationshipSearchInput:
+      type: object
+      default: null
+      properties:
+        domains:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        name:
+          type: string
+      required:
+      - domains
+      - name
+    DataType:
+      type: object
+      default: null
+      properties:
+        name:
+          type: string
+    RecertificationSettings:
+      type: 'null'
+      properties:
+        recertificationType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+        recertificationDate:
+          type: string
+          format: date-time
+        reviewFrequency:
+          type: string
+          enum:
+          - THREE_YEARS
+          - TWO_YEARS
+          - ANNUAL
+          - SEMIANNUAL
+          - QUARTERLY
+      required:
+      - recertificationDate
+      - recertificationType
+      - reviewFrequency
+    ArtifactUpdateSettings:
+      type: 'null'
+      properties:
+        artifactUpdateType:
+          type: string
+          enum:
+          - MANUAL
+          - AUTOMATIC
+          - NONE
+      required:
+      - artifactUpdateType
+    StreamingResponseBody: {}
+    ContextType:
+      type: object
+      default: null
+      properties:
+        name:
+          type: string
     RelationshipCreateInput:
       type: object
       default: null
@@ -690,6 +794,18 @@ components:
           $ref: '#/components/schemas/ExternalAssessment'
         instantAnalysis:
           type: boolean
+    VisoUser:
+      type: object
+      default: null
+      properties:
+        businessUnit:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
     ThirdPartyContact:
       type: object
       default: null
@@ -704,24 +820,6 @@ components:
       - email
       - firstName
       - lastName
-    ThirdPartyContactUpdateRequest:
-      type: object
-      default: null
-      properties:
-        relationshipId:
-          type: integer
-          format: int64
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-      required:
-      - email
-      - firstName
-      - lastName
-      - relationshipId
     Assessment:
       type: object
       default: null
@@ -838,123 +936,25 @@ components:
           - MEDIUM
           - HIGH
           - EXTREME
-    ContextType:
+    AssessmentStatusHistory:
       type: object
       default: null
       properties:
-        name:
-          type: string
-    VisoUser:
-      type: object
-      default: null
-      properties:
-        businessUnit:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-    RelationshipSearchInput:
-      type: object
-      default: null
-      properties:
-        domains:
-          type: array
-          items:
-            type: string
-          uniqueItems: true
-        name:
-          type: string
-      required:
-      - domains
-      - name
-    TagsCreateInput:
-      type: object
-      default: null
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
-          minItems: 1
-      required:
-      - tags
-    RecertificationSettings:
-      type: 'null'
-      properties:
-        recertificationType:
-          type: string
-          enum:
-          - MANUAL
-          - AUTOMATIC
-          - NONE
-        recertificationDate:
+        date:
           type: string
           format: date-time
-        reviewFrequency:
+        status:
           type: string
           enum:
-          - THREE_YEARS
-          - TWO_YEARS
-          - ANNUAL
-          - SEMIANNUAL
-          - QUARTERLY
-      required:
-      - recertificationDate
-      - recertificationType
-      - reviewFrequency
-    ExternalAssessment:
-      type: object
-      default: null
-      properties:
-        reviewFrequency:
-          type: string
-          enum:
-          - THREE_YEARS
-          - TWO_YEARS
-          - ANNUAL
-          - SEMIANNUAL
-          - QUARTERLY
-        recertificationType:
-          type: string
-          enum:
-          - MANUAL
-          - AUTOMATIC
-          - NONE
-        assessmentCompletionDate:
-          type: string
-          format: date
-        assessmentStartDate:
-          type: string
-          format: date
-        automaticArtifactUpdates:
-          type: boolean
-        inherentRiskLevel:
-          type: string
-          enum:
-          - NO_CONTEXT
-          - LOW
-          - MEDIUM
-          - HIGH
-          - EXTREME
-        residualRiskLevel:
-          type: string
-          enum:
-          - NO_CONTEXT
-          - LOW
-          - MEDIUM
-          - HIGH
-          - EXTREME
-      required:
-      - assessmentCompletionDate
-      - assessmentStartDate
-      - automaticArtifactUpdates
-      - inherentRiskLevel
-      - recertificationType
-      - residualRiskLevel
-      - reviewFrequency
+          - NOT_ASSESSED
+          - AWAITING_REMEDIATION
+          - STARTED
+          - REVIEW_STARTED
+          - AUDIT_COMPLETED
+          - COMPLETED
+          - CANCELLED
+          - DELETED
+          - COLLECTING_INFORMATION
   securitySchemes:
     bearerAuth:
       type: http

@@ -57,6 +57,13 @@ paths:
                 $ref: '#/components/schemas/VendorRiskSummaryResponse'
 components:
   schemas:
+    ControlDomainSummary:
+      type: object
+      properties:
+        domain:
+          type: string
+        riskLevel:
+          type: string
     VendorRiskSummaryResponse:
       type: object
       properties:
@@ -91,13 +98,6 @@ components:
         summaryGeneratedAt:
           type: string
           format: date-time
-    ControlDomainSummary:
-      type: object
-      properties:
-        domain:
-          type: string
-        riskLevel:
-          type: string
     RelationshipEntry:
       type: object
       properties:
